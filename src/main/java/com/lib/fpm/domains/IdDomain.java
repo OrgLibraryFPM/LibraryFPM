@@ -10,7 +10,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @MappedSuperclass
-public class VersionDomain {
+public class IdDomain {
 	
 	private Long id;
 
@@ -40,7 +40,7 @@ public class VersionDomain {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		VersionDomain other = (VersionDomain) obj;
+		IdDomain other = (IdDomain) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(obj))
 				.append(id, other.id)

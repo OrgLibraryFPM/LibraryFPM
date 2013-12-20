@@ -9,7 +9,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @Entity
 @Table(name="book_types")
-public class BookType extends VersionDomain{
+public class BookType extends IdDomain{
 	
 	private String type;
 
