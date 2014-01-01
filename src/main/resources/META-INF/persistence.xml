@@ -8,6 +8,7 @@
 	<persistence-unit name="acme" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.lib.fpm.domains.BookType</class>
+		<class>com.lib.fpm.domains.Publication</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			 <property name="hibernate.connection.charSet" value="UTF-8"/>

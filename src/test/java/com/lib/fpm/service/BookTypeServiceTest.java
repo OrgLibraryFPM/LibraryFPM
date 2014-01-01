@@ -22,8 +22,8 @@ public class BookTypeServiceTest extends PersistenceTest{
 		BookType bookType = new BookType();
 		bookType.setType("Book");
 		
-		BookType cityTest = bookTypeService.create(bookType);
-		assertNotNull(cityTest);
+		BookType bookTypeTest = bookTypeService.create(bookType);
+		assertNotNull(bookTypeTest);
 	}
 	
 	@Test
