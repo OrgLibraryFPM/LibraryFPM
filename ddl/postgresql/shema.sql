@@ -27,8 +27,8 @@ ALTER TABLE ONLY book_types ALTER COLUMN id SET DEFAULT nextval('book_types_id_s
 CREATE TABLE publications
 (
   id bigint NOT NULL,
-  name character varying(255), -- назва видавництва
-  city character varying(255), -- місто
+  name character varying(255), 									-- назва видавництва
+  city character varying(255), 										-- місто
   CONSTRAINT publications_pkey PRIMARY KEY (id)
 );
 
@@ -44,5 +44,31 @@ CREATE SEQUENCE  publications_id_seq
 ALTER SEQUENCE  publications_id_seq OWNED BY  publications.id;
 
 ALTER TABLE ONLY publications ALTER COLUMN id SET DEFAULT nextval('publications_id_seq'::regclass);
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Автор
+
+CREATE TABLE authors
+(
+  id bigint NOT NULL,
+  last_name character varying(255), 								-- прізвище
+  first_name character varying(255), 							-- імя
+  middle_name character varying(255),							-- по-батькові
+  CONSTRAINT authors_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE authors OWNER TO postgres;
+
+CREATE SEQUENCE  authors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+	
+ALTER SEQUENCE  authors_id_seq OWNED BY  authors.id;
+
+ALTER TABLE ONLY authors ALTER COLUMN id SET DEFAULT nextval('authors_id_seq'::regclass);
 
 -----------------------------------------------------------------------------------------------------------------------------------------------

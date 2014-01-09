@@ -81,9 +81,9 @@ public class BookTypeServiceTest extends PersistenceTest{
 	
 	@Test
 	public void testFindAll(){
-		List<BookType> cityList = bookTypeService.findAll();
-		assertNotNull(cityList);
-		assertEquals(2,cityList.size());
+		List<BookType> bookTypes = bookTypeService.findAll();
+		assertNotNull(bookTypes);
+		assertEquals(2,bookTypes.size());
 	}
 	
 	@Test
