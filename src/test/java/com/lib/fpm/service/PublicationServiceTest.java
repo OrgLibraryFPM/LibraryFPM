@@ -10,12 +10,16 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.lib.fpm.domains.Publication;
+import com.lib.fpm.services.BookService;
 import com.lib.fpm.services.PublicationService;
 
 public class PublicationServiceTest extends PersistenceTest{
 	
 	@Inject
 	private PublicationService publicationService;
+	
+	@Inject
+	private BookService bookService;
 
 	@Test
 	public void testCreate(){
@@ -71,6 +75,7 @@ public class PublicationServiceTest extends PersistenceTest{
 		publicationService.delete(1L);
 		Publication publication = publicationService.findById(1L);
 		assertNull(publication);
+		assertNull(bookService.findById(1L).getPublication());
 	}
 	
 	@Test
