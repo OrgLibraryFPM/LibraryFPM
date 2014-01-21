@@ -78,12 +78,12 @@ ALTER TABLE ONLY authors ALTER COLUMN id SET DEFAULT nextval('authors_id_seq'::r
 CREATE TABLE books
 (
   id bigint NOT NULL,
-  name character varying(255), 								-- назва
-  year smallint, 											-- рік видання
-  isbn character varying(255),								-- ISBN
-  note text,												-- опис
-  book_type_id bigint,										-- тип видання
-  publication_id bigint,									-- тип видання
+  name character varying(255),						-- назва
+  year smallint,                                    -- рік видання
+  isbn character varying(255),                      -- ISBN
+  note text,                                        -- опис
+  book_type_id bigint,                              -- тип видання
+  publication_id bigint,                            -- тип видання
   CONSTRAINT books_pkey PRIMARY KEY (id)
 );
 
@@ -107,3 +107,17 @@ ALTER TABLE ONLY books
     ADD CONSTRAINT fk_publication FOREIGN KEY (publication_id) REFERENCES publications(id) ON DELETE SET NULL;
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE author_book
+(
+  author_id bigint NOT NULL,
+  book_id bigint NOT NULL
+);
+
+ALTER TABLE author_book OWNER TO postgres;
+
+ALTER TABLE ONLY author_book
+	ADD CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+ 
+ALTER TABLE ONLY author_book
+	ADD CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES authors (id) MATCH SIMPLE ON UPDATE CASCADE;

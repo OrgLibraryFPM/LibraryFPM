@@ -1,16 +1,18 @@
 package com.lib.fpm.service;
 
 import static org.junit.Assert.*;
-
+import static org.hamcrest.CoreMatchers.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.junit.Test;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import com.lib.fpm.domains.Author;
 import com.lib.fpm.services.AuthorService;
+import com.lib.fpm.services.BookService;
 
 public class AuthorServiceTest extends PersistenceTest{
 	
@@ -20,6 +22,9 @@ public class AuthorServiceTest extends PersistenceTest{
 	
 	@Inject
 	private AuthorService authorService;
+	
+	@Inject
+	private BookService bookService;
 
 	@Test
 	public void testCreate(){
@@ -74,9 +79,16 @@ public class AuthorServiceTest extends PersistenceTest{
 	
 	@Test
 	public void testDelete(){
-		authorService.delete(1L);
-		Author author = authorService.findById(1L);
-		assertNull(author);
+		bookService.delete(2L);
+		authorService.delete(3L);
+		Author author = authorService.findById(3L);
+		assertThat(author, nullValue());
+		assertThat(bookService.findById(2L), nullValue());
+		
+		try {
+			authorService.delete(1L);
+		} catch (DataIntegrityViolationException e) {
+		}
 	}
 	
 	@Test
@@ -90,12 +102,12 @@ public class AuthorServiceTest extends PersistenceTest{
 	public void testFindAll(){
 		List<Author> authors = authorService.findAll();
 		assertNotNull(authors);
-		assertEquals(2,authors.size());
+		assertEquals(3,authors.size());
 	}
 	
 	@Test
 	public void testCount(){
 		Long count = authorService.count();
-		assertEquals(Long.valueOf(2),count);
+		assertEquals(Long.valueOf(3),count);
 	}
 }

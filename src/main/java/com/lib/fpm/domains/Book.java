@@ -1,9 +1,13 @@
 package com.lib.fpm.domains;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,6 +24,7 @@ public class Book extends IdDomain{
 	private String note;
 	private BookType bookType;
 	private Publication publication;
+	private List<Author> authors;
 	
 	@Column(name="name")
 	public String getName() {
@@ -75,6 +80,19 @@ public class Book extends IdDomain{
 
 	public void setPublication(Publication publication) {
 		this.publication = publication;
+	}
+	
+	@ManyToMany
+	@JoinTable(name="author_book",
+			joinColumns = @JoinColumn(name="book_id", referencedColumnName="id"),
+	        inverseJoinColumns = @JoinColumn(name="author_id", referencedColumnName="id")
+	)
+	public List<Author> getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
 	}
 
 	@Override

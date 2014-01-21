@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.lib.fpm.domains.Book;
+import com.lib.fpm.services.AuthorService;
 import com.lib.fpm.services.BookService;
 import com.lib.fpm.services.BookTypeService;
 import com.lib.fpm.services.PublicationService;
@@ -27,7 +28,10 @@ public class BookServiceTest extends PersistenceTest{
 	
 	@Inject
 	private PublicationService publicationService;
-
+	
+	@Inject
+	private AuthorService authorService;
+	
 	@Test
 	public void testCreate(){
 		Book book = new Book();
@@ -93,6 +97,7 @@ public class BookServiceTest extends PersistenceTest{
 		assertNull(book);
 		assertEquals(Long.valueOf(2), publicationService.count());
 		assertEquals(Long.valueOf(2), bookTypeService.count());
+		assertNotNull(authorService.findById(1L));
 	}
 	
 	@Test
@@ -107,12 +112,12 @@ public class BookServiceTest extends PersistenceTest{
 	public void testFindAll(){
 		List<Book> books = bookService.findAll();
 		assertNotNull(books);
-		assertEquals(2,books.size());
+		assertEquals(3,books.size());
 	}
 	
 	@Test
 	public void testCount(){
 		Long count = bookService.count();
-		assertEquals(Long.valueOf(2),count);
+		assertEquals(Long.valueOf(3),count);
 	}
 }

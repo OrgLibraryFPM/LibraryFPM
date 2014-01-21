@@ -1,7 +1,11 @@
 package com.lib.fpm.domains;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -14,6 +18,7 @@ public class Author extends IdDomain{
 	private String lastName;
 	private String firstName;
 	private String middleName;
+	private List<Book> books;
 	
 	@Column(name="last_name")
 	public String getLastName() {
@@ -40,6 +45,15 @@ public class Author extends IdDomain{
 
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors")
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 
 	@Override
