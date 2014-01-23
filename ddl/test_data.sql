@@ -17,9 +17,14 @@ INSERT INTO  author_book (author_id, book_id) VALUES (1,3);
 INSERT INTO  author_book (author_id, book_id) VALUES (2,3);
 INSERT INTO  author_book (author_id, book_id) VALUES (3,2);
 
+INSERT INTO  readers (id, last_name, first_name, middle_name) VALUES (1, 'Shutka', 'Anriy','Vasyljvych');
+INSERT INTO  readers (id, last_name, first_name, middle_name) VALUES (2, 'Kowtun', 'Roman','Ivanovych');
+INSERT INTO  readers (id, last_name, first_name, middle_name) VALUES (3, 'Sofer', 'Wowa','Petrowych');
+
 -----------------------------RESTART SEQUENCE-----------------------------------------------
 ALTER SEQUENCE book_types_id_seq RESTART WITH 100;
 ALTER SEQUENCE publications_id_seq RESTART WITH 100;
 ALTER SEQUENCE authors_id_seq RESTART WITH 100;
 ALTER SEQUENCE books_id_seq RESTART WITH 100;
+ALTER SEQUENCE readers_id_seq RESTART WITH 100;
 

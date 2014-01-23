@@ -121,3 +121,29 @@ ALTER TABLE ONLY author_book
  
 ALTER TABLE ONLY author_book
 	ADD CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES authors (id) MATCH SIMPLE ON UPDATE CASCADE;
+	
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Читач
+
+CREATE TABLE readers
+(
+  id bigint NOT NULL,
+  last_name character varying(255), 							-- прізвище
+  first_name character varying(255), 							-- імя
+  middle_name character varying(255),							-- по-батькові
+  CONSTRAINT readers_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE readers OWNER TO postgres;
+
+CREATE SEQUENCE  readers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+	
+ALTER SEQUENCE  readers_id_seq OWNED BY  readers.id;
+
+ALTER TABLE ONLY readers ALTER COLUMN id SET DEFAULT nextval('readers_id_seq'::regclass);

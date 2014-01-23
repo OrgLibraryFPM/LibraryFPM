@@ -1,34 +1,19 @@
 package com.lib.fpm.domains;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @Entity
-@Table(name="authors")
-public class Author extends Account{
+@Table(name="readers")
+public class Reader extends Account{
 	
-	private List<Book> books;
-	
-	public Author() {
+	public Reader() {
 		super();
 	}
 	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "authors")
-	public List<Book> getBooks() {
-		return books;
-	}
-
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
-
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
