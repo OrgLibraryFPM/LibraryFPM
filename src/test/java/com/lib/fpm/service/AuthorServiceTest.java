@@ -2,6 +2,7 @@ package com.lib.fpm.service;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javax.inject.Inject;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import com.lib.fpm.domains.Account;
 import com.lib.fpm.domains.Author;
 import com.lib.fpm.services.AuthorService;
 import com.lib.fpm.services.BookService;
@@ -93,7 +95,7 @@ public class AuthorServiceTest extends PersistenceTest{
 	
 	@Test
 	public void testFindById(){
-		Author author = authorService.findById(1L);
+		Account author = authorService.findById(1L);
 		assertNotNull(author);
 		assertEquals("Pupkin",author.getLastName());
 	}

@@ -14,6 +14,10 @@ public class Publication extends IdDomain{
 	private String name;
 	private String city;
 	
+	public Publication() {
+		super();
+	}
+
 	@Column(name="name")
 	public String getName() {
 		return name;
@@ -35,6 +39,7 @@ public class Publication extends IdDomain{
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(super.hashCode())
 				.append(name)
 				.hashCode();
 	}

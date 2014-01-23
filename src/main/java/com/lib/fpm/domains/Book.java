@@ -26,6 +26,10 @@ public class Book extends IdDomain{
 	private Publication publication;
 	private List<Author> authors;
 	
+	public Book() {
+		super();
+	}
+
 	@Column(name="name")
 	public String getName() {
 		return name;
@@ -98,6 +102,7 @@ public class Book extends IdDomain{
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(super.hashCode())
 				.append(name)
 				.append(year)
 				.append(isbn)

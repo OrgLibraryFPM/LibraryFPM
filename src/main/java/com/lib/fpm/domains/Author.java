@@ -2,7 +2,6 @@ package com.lib.fpm.domains;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -13,40 +12,14 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @Entity
 @Table(name="authors")
-public class Author extends IdDomain{
+public class Author extends Account{
 	
-	private String lastName;
-	private String firstName;
-	private String middleName;
 	private List<Book> books;
 	
-	@Column(name="last_name")
-	public String getLastName() {
-		return lastName;
+	public Author() {
+		super();
 	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	@Column(name="first_name")
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	@Column(name="middle_name")
-	public String getMiddleName() {
-		return middleName;
-	}
-
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
-	}
-
+	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors")
 	public List<Book> getBooks() {
 		return books;
@@ -59,9 +32,7 @@ public class Author extends IdDomain{
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(lastName)
-				.append(firstName)
-				.append(middleName)
+				.append(super.hashCode())
 				.hashCode();
 	}
 
@@ -73,12 +44,8 @@ public class Author extends IdDomain{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Author other = (Author) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(obj))
-				.append(lastName, other.lastName)
-				.append(firstName, other.firstName)
-				.append(middleName, other.middleName)
 				.isEquals();
 	}
 }

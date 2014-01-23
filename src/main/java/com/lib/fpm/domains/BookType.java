@@ -13,6 +13,10 @@ public class BookType extends IdDomain{
 	
 	private String type;
 
+	public BookType() {
+		super();
+	}
+
 	@Column(name="type")
 	public String getType() {
 		return type;
@@ -25,6 +29,7 @@ public class BookType extends IdDomain{
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
+				.append(super.hashCode())
 				.append(type)
 				.hashCode();
 	}
