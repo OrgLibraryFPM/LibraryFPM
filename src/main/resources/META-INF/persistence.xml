@@ -12,6 +12,7 @@
 		<class>com.lib.fpm.domains.Author</class>
 		<class>com.lib.fpm.domains.Book</class>
 		<class>com.lib.fpm.domains.Reader</class>
+		<class>com.lib.fpm.domains.Issuanse</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			 <property name="hibernate.connection.charSet" value="UTF-8"/>

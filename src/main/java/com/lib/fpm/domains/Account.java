@@ -47,7 +47,7 @@ public class Account extends IdDomain {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(super.hashCode())
+				.appendSuper(super.hashCode())
 				.append(lastName)
 				.append(firstName)
 				.append(middleName)

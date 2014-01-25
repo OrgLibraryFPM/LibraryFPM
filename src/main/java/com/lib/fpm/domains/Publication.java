@@ -39,7 +39,7 @@ public class Publication extends IdDomain{
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(super.hashCode())
+				.appendSuper(super.hashCode())
 				.append(name)
 				.hashCode();
 	}

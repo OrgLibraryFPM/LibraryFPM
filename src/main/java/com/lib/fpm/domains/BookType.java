@@ -29,7 +29,7 @@ public class BookType extends IdDomain{
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(super.hashCode())
+				.appendSuper(super.hashCode())
 				.append(type)
 				.hashCode();
 	}

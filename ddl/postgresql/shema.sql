@@ -147,3 +147,36 @@ CREATE SEQUENCE  readers_id_seq
 ALTER SEQUENCE  readers_id_seq OWNED BY  readers.id;
 
 ALTER TABLE ONLY readers ALTER COLUMN id SET DEFAULT nextval('readers_id_seq'::regclass);
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Видача
+
+CREATE TABLE issuanses
+(
+  id bigint NOT NULL,
+  book_id bigint NOT NULL, 								-- книга
+  reader_id bigint NOT NULL, 							-- читач
+  date_issuanse timestamp without time zone NOT NULL,	-- дата видачі
+  date_return timestamp without time zone,				-- дата повернення
+  CONSTRAINT issuanses_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE issuanses OWNER TO postgres;
+
+CREATE SEQUENCE  issuanses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+	
+ALTER SEQUENCE  issuanses_id_seq OWNED BY  issuanses.id;
+
+ALTER TABLE ONLY issuanses ALTER COLUMN id SET DEFAULT nextval('issuanses_id_seq'::regclass);
+
+ALTER TABLE ONLY issuanses
+    ADD CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(id) ON UPDATE CASCADE;
+    
+ALTER TABLE ONLY issuanses
+    ADD CONSTRAINT fk_reader FOREIGN KEY (reader_id) REFERENCES readers(id) ON UPDATE CASCADE;

@@ -21,10 +21,14 @@ INSERT INTO  readers (id, last_name, first_name, middle_name) VALUES (1, 'Shutka
 INSERT INTO  readers (id, last_name, first_name, middle_name) VALUES (2, 'Kowtun', 'Roman','Ivanovych');
 INSERT INTO  readers (id, last_name, first_name, middle_name) VALUES (3, 'Sofer', 'Wowa','Petrowych');
 
+INSERT INTO  issuanses (id, book_id, reader_id, date_issuanse, date_return) VALUES (1, 3, 3, '2013-03-15','2013-03-25');
+INSERT INTO  issuanses (id, book_id, reader_id, date_issuanse, date_return) VALUES (2, 3, 2, '2013-04-25',null);
+
 -----------------------------RESTART SEQUENCE-----------------------------------------------
 ALTER SEQUENCE book_types_id_seq RESTART WITH 100;
 ALTER SEQUENCE publications_id_seq RESTART WITH 100;
 ALTER SEQUENCE authors_id_seq RESTART WITH 100;
 ALTER SEQUENCE books_id_seq RESTART WITH 100;
 ALTER SEQUENCE readers_id_seq RESTART WITH 100;
+ALTER SEQUENCE issuanses_id_seq RESTART WITH 100;
 

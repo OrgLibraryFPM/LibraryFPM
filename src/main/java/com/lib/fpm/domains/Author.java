@@ -32,7 +32,7 @@ public class Author extends Account{
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(super.hashCode())
+				.appendSuper(super.hashCode())
 				.hashCode();
 	}
 
