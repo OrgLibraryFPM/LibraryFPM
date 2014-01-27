@@ -2,11 +2,13 @@ package com.lib.fpm.domains;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @MappedSuperclass
+@XmlRootElement
 public class Account extends IdDomain {
 
 	private String lastName;

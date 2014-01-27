@@ -4,15 +4,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "issuanses")
+@XmlRootElement
 public class Issuanse extends IdDomain {
 
 	private Date dateIssuanse;
@@ -42,7 +45,7 @@ public class Issuanse extends IdDomain {
 		this.dateReturn = dateReturn;
 	}
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="book_id")
 	public Book getBook() {
 		return book;
@@ -52,7 +55,7 @@ public class Issuanse extends IdDomain {
 		this.book = book;
 	}
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="reader_id")
 	public Reader getReader() {
 		return reader;

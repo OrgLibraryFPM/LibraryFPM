@@ -3,12 +3,14 @@ package com.lib.fpm.domains;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @Entity
 @Table(name="book_types")
+@XmlRootElement
 public class BookType extends IdDomain{
 	
 	private String type;

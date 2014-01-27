@@ -2,12 +2,14 @@ package com.lib.fpm.domains;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @Entity
 @Table(name="readers")
+@XmlRootElement
 public class Reader extends Account{
 	
 	public Reader() {
