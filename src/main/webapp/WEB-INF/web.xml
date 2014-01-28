@@ -13,7 +13,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<!-- Processes application requests -->
+	<!-- Processes application requests 
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -28,7 +28,7 @@
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping>-->
 	
 	<servlet>
 	    <servlet-name>Jersey REST Service</servlet-name>
@@ -48,4 +48,7 @@
 	  <url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 	  
+	  <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
