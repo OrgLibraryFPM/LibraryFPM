@@ -371,8 +371,8 @@
 						<configuration>
 							<driver>${db.driver}</driver>
 							<url>${db.url}</url>
-							<username>${db.username}</username>
-							<password>${db.password}</password>
+							<!-- <username>${db.username}</username>
+							<password>${db.password}</password> -->
 							<autocommit>true</autocommit>
 							<skip>${skip.recreate.shema}</skip>
 							<sqlCommand>
@@ -394,8 +394,8 @@
 						<configuration>
 							<driver>${db.driver}</driver>
 							<url>${db.url}</url>
-							<username>${db.username}</username>
-							<password>${db.password}</password>
+							<!-- <username>${db.username}</username>
+							<password>${db.password}</password> -->
 							<autocommit>true</autocommit>
 							<skip>${skip.recreate.database}</skip>
 							<srcFiles>
