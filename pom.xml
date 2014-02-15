@@ -375,10 +375,6 @@
 							<password>${db.password}</password>
 							<autocommit>true</autocommit>
 							<skip>${skip.recreate.shema}</skip>
-							<sqlCommand>
-								DROP SCHEMA IF EXISTS ${db.schema} CASCADE;
-								CREATE SCHEMA ${db.schema};
-							</sqlCommand>
 							<srcFiles>
 								<srcFile>ddl/postgresql/shema.sql</srcFile>
 							</srcFiles>
