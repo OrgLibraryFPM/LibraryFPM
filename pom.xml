@@ -13,8 +13,10 @@
   	<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
   	<org.aspectj-version>1.6.10</org.aspectj-version>
   	<skip.recreate.database>false</skip.recreate.database>
+  	<skip.recreate.schema>false</skip.recreate.schema>
   	<postgresqlVersion>9.1-901.jdbc4</postgresqlVersion>
   	<jersey.version>1.18</jersey.version>
+  	<libfpm.env>dev</libfpm.env>
   </properties>
   
   <dependencies>
@@ -212,14 +214,42 @@
 		    <artifactId>jersey-json</artifactId>
 		    <version>${jersey.version}</version>
 		 </dependency>
-            
-          
-		
   </dependencies>
+  
+  <profiles>
+  	<profile>
+  		<id>Dedelop</id>
+  		<properties>
+  			<libfpm.env>dev</libfpm.env>
+  			<skip.recreate.database>false</skip.recreate.database>
+  			<skip.recreate.schema>true</skip.recreate.schema>
+  		</properties>
+  		<activation>
+  			<property>
+  				<name>developEnv</name>
+  			</property>
+  		</activation>
+  	</profile>
+  	
+  	<profile>
+  		<id>Heroku</id>
+  		<properties>
+  			<libfpm.env>heroku</libfpm.env>
+  			<skip.recreate.database>true</skip.recreate.database>
+  			<skip.recreate.schema>false</skip.recreate.schema>
+  		</properties>
+  		<activation>
+  			<activeByDefault>true</activeByDefault>
+  		</activation>
+  	</profile>
+  </profiles>
+  
+  
+
   <build>
+  
     <finalName>LibraryFPM</finalName>
-    
-   
+
         <plugins>
         	<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -252,8 +282,13 @@
 				<version>8.1.13.v20130916</version>
 				<artifactId>jetty-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
 			
-            <!-- RECREATE data base 
+            <!-- RECREATE data base -->
             <plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>properties-maven-plugin</artifactId>
@@ -267,7 +302,7 @@
 						</goals>
 						<configuration>
 							<files>
-								<file>${project.basedir}/src/main/resources/postgresql_db.properties</file>
+								<file>${project.basedir}/src/main/resources/postgresql_db_${libfpm.env}.properties</file>
 							</files>
 						</configuration>
 					</execution>
@@ -339,7 +374,11 @@
 							<username>${db.username}</username>
 							<password>${db.password}</password>
 							<autocommit>true</autocommit>
-							<skip>${skip.recreate.database}</skip>
+							<skip>${skip.recreate.shema}</skip>
+							<sqlCommand>
+								DROP SCHEMA IF EXISTS ${db.schema};
+								CREATE SCHEMA ${db.schema};
+							</sqlCommand>
 							<srcFiles>
 								<srcFile>ddl/postgresql/shema.sql</srcFile>
 							</srcFiles>
@@ -366,7 +405,7 @@
 					</execution>
 					
 				</executions>
-			</plugin>-->
+			</plugin><!--  -->
 			
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
