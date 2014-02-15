@@ -377,7 +377,7 @@
 							<skip>${skip.recreate.shema}</skip>
 							<sqlCommand>
 								DROP SCHEMA IF EXISTS ${db.schema} CASCADE;
-								CREATE SCHEMA ${db.schema} AUTHORIZATION aglbnwgiofkbbg;
+								CREATE SCHEMA ${db.schema};
 							</sqlCommand>
 							<srcFiles>
 								<srcFile>ddl/postgresql/shema.sql</srcFile>
