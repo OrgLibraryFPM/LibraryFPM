@@ -371,13 +371,13 @@
 						<configuration>
 							<driver>${db.driver}</driver>
 							<url>${db.url}</url>
-							<!-- <username>${db.username}</username>
-							<password>${db.password}</password> -->
+							<username>${db.username}</username>
+							<password>${db.password}</password>
 							<autocommit>true</autocommit>
 							<skip>${skip.recreate.shema}</skip>
 							<sqlCommand>
-								DROP SCHEMA IF EXISTS ${db.schema};
-								CREATE SCHEMA ${db.schema};
+								DROP SCHEMA IF EXISTS ${db.schema} CASCADE;
+								CREATE SCHEMA ${db.schema} AUTHORIZATION aglbnwgiofkbbg;
 							</sqlCommand>
 							<srcFiles>
 								<srcFile>ddl/postgresql/shema.sql</srcFile>
@@ -394,8 +394,8 @@
 						<configuration>
 							<driver>${db.driver}</driver>
 							<url>${db.url}</url>
-							<!-- <username>${db.username}</username>
-							<password>${db.password}</password> -->
+							<username>${db.username}</username>
+							<password>${db.password}</password>
 							<autocommit>true</autocommit>
 							<skip>${skip.recreate.database}</skip>
 							<srcFiles>
