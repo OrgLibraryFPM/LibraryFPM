@@ -115,8 +115,6 @@ CREATE TABLE author_book
   book_id bigint NOT NULL
 );
 
-ALTER TABLE author_book OWNER TO postgres;
-
 ALTER TABLE ONLY author_book
 	ADD CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
  
