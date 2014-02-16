@@ -375,6 +375,10 @@
 							<password>${db.password}</password>
 							<autocommit>true</autocommit>
 							<skip>${skip.recreate.shema}</skip>
+							<sqlCommand>
+								DROP SCHEMA ${db.schema} CASCADE;
+								CREATE SCHEMA ${db.schema};
+							</sqlCommand>
 							<srcFiles>
 								<srcFile>ddl/postgresql/shema.sql</srcFile>
 							</srcFiles>
@@ -393,7 +397,7 @@
 							<username>${db.username}</username>
 							<password>${db.password}</password>
 							<autocommit>true</autocommit>
-							<skip>${skip.recreate.database}</skip>
+							<skip>${skip.recreate.shema}</skip>
 							<srcFiles>
 								<srcFile>ddl/test_data.sql</srcFile>
 							</srcFiles>

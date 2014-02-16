@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS author_book CASCADE;
-DROP TABLE IF EXISTS authors CASCADE;
-DROP TABLE IF EXISTS book_types CASCADE;
-DROP TABLE IF EXISTS books CASCADE;
-DROP TABLE IF EXISTS issuanses CASCADE;
-DROP TABLE IF EXISTS publications CASCADE;
-DROP TABLE IF EXISTS readers CASCADE;
+--DROP TABLE IF EXISTS author_book CASCADE;
+--DROP TABLE IF EXISTS authors CASCADE;
+--DROP TABLE IF EXISTS book_types CASCADE;
+--DROP TABLE IF EXISTS books CASCADE;
+--DROP TABLE IF EXISTS issuanses CASCADE;
+--DROP TABLE IF EXISTS publications CASCADE;
+--DROP TABLE IF EXISTS readers CASCADE;
 
 
 -- Тип книги
@@ -15,8 +15,6 @@ CREATE TABLE book_types
   type character varying(255),
   CONSTRAINT book_types_pkey PRIMARY KEY (id)
 );
-
-ALTER TABLE book_types OWNER TO postgres;
 
 CREATE SEQUENCE  book_types_id_seq
     START WITH 1
@@ -41,8 +39,6 @@ CREATE TABLE publications
   CONSTRAINT publications_pkey PRIMARY KEY (id)
 );
 
-ALTER TABLE publications OWNER TO postgres;
-
 CREATE SEQUENCE  publications_id_seq
     START WITH 1
     INCREMENT BY 1
@@ -66,8 +62,6 @@ CREATE TABLE authors
   middle_name character varying(255),							-- по-батькові
   CONSTRAINT authors_pkey PRIMARY KEY (id)
 );
-
-ALTER TABLE authors OWNER TO postgres;
 
 CREATE SEQUENCE  authors_id_seq
     START WITH 1
@@ -95,8 +89,6 @@ CREATE TABLE books
   publication_id bigint,                            -- тип видання
   CONSTRAINT books_pkey PRIMARY KEY (id)
 );
-
-ALTER TABLE books OWNER TO postgres;
 
 CREATE SEQUENCE  books_id_seq
     START WITH 1
@@ -144,8 +136,6 @@ CREATE TABLE readers
   CONSTRAINT readers_pkey PRIMARY KEY (id)
 );
 
-ALTER TABLE readers OWNER TO postgres;
-
 CREATE SEQUENCE  readers_id_seq
     START WITH 1
     INCREMENT BY 1
@@ -170,8 +160,6 @@ CREATE TABLE issuanses
   date_return timestamp without time zone,				-- дата повернення
   CONSTRAINT issuanses_pkey PRIMARY KEY (id)
 );
-
-ALTER TABLE issuanses OWNER TO postgres;
 
 CREATE SEQUENCE  issuanses_id_seq
     START WITH 1
