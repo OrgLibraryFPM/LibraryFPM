@@ -21,13 +21,8 @@
 	<context:component-scan base-package="com.lib.fpm"></context:component-scan>
 	
 	<context:property-placeholder
-		location="classpath:postgresql_db_heroku.properties"
+		location="classpath:postgresql_db_dev.properties"
 		ignore-resource-not-found="false" ignore-unresolvable="true" />
-	<!-- 
-	<bean id="placeholderConfig"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="" />
-	</bean> -->
 		
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

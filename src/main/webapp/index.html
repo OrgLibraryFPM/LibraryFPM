@@ -3,48 +3,113 @@
 <meta charset="utf-8">
 <head>
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/start/jquery-ui.css" type="text/css" />
+<link rel="stylesheet" href="lib/jqGrid/css/ui.jqgrid.css" type="text/css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js" > </script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.0/jquery-ui.min.js" ></script>
+    <script type="text/javascript" src="lib/jqGrid/js/i18n/grid.locale-ua.js" ></script>
+    <script type="text/javascript" src="lib/jqGrid/js/jquery.jqGrid.min.js" ></script>
 </head>
 <body>
-	<script id="bookTypeTmp" type="text/template">
-		<td><%= id %></td>
-		<td><%= type %></td>
-	</script>
-	<script src="lib/backbone/underscore.js"></script>
-	<script src="lib/backbone/jquery.js"></script>
-	<script src="lib/backbone/backbone.js"></script>
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-	<script src="js/js/main.js"></script>
-	<script src="js/models/bookType.js"></script>
-	<script src="js/collections/bookTypes.js"></script>
-	<script src="js/views/bookType.js"></script>
-	<script src="js/routers/router.js"></script>
 
-	<header>
-			<h2>Типи Книг</h2>
-	</header>
-		<div class="row">
-			<div class="col-md-8">
-				<table id="allBookTypes" class="table table-striped table-hover table-bordered">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>ТИП</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
-		</div>
-	<script>
-		new Lib.Router();
-		Backbone.history.start();
 
-		Lib.bookTypes = new Lib.Collection.BookTypes();
-		Lib.bookTypes.fetch().then(function() {
-			new Lib.View.BookTypeApp({
-				collection : Lib.bookTypes
-			});
-		});
-	</script>
+
+<table id="list2"></table>
+<div id="pager2"></div>
+<script>
+
+    jQuery("#list2").jqGrid({
+        url:'/rest/bookType/all',
+        datatype: "json",
+        colNames:['ID','ТИП'],
+        colModel:[
+            {name:'id',index:'id', width:100},
+            {name:'type',index:'type', width:500, editable:true}
+        ],
+        rowNum:10,
+        rowList:[10,20,30],
+        pager: '#pager2',
+        sortname: 'id',
+        viewrecords: true,
+        sortorder: "asc",
+        caption:"Типи книг"
+    });
+    jQuery("#list2").jqGrid('navGrid','#pager2',
+            {
+                search:false,
+                edit:true,
+                add:true,
+                del:true
+            },
+            {
+                url:"/rest/bookType/updateOne",
+                closeAfterEdit: true,
+                ajaxEditOptions: { contentType: "application/json"},
+                serializeEditData : function(postdata, formid) {
+                    return (JSON.stringify(postdata, ["id","type"]));
+                }
+            },
+            {
+                url:"/rest/bookType/createOne",
+                closeAfterAdd: true,
+                ajaxEditOptions: { contentType: "application/json"},
+                serializeEditData : function(postdata, formid) {
+                    return (JSON.stringify(postdata, ["type"]));
+                }
+            },
+            {
+                url:"/rest/bookType/del",
+                ajaxDelOptions: { contentType: "application/json"},
+                serializeDelData : function(postdata, formid) {
+                    return (JSON.stringify($('#list2').jqGrid('getGridParam', 'selrow')));
+                }
+            }
+    );
+</script>
+
+	<!--<script id="bookTypeTmp" type="text/template">-->
+		<!--<td><%= id %></td>-->
+		<!--<td><%= type %></td>-->
+	<!--</script>-->
+
+	<!--<script src="lib/backbone/underscore.js"></script>-->
+	<!--<script src="lib/backbone/jquery.js"></script>-->
+	<!--<script src="lib/backbone/backbone.js"></script>-->
+	<!--<script src="https://code.jquery.com/jquery.js"></script>-->
+	<!--<script src="lib/bootstrap/js/bootstrap.min.js"></script>-->
+	<!--<script src="js/js/main.js"></script>-->
+	<!--<script src="js/models/bookType.js"></script>-->
+	<!--<script src="js/collections/bookTypes.js"></script>-->
+	<!--<script src="js/views/bookType.js"></script>-->
+	<!--<script src="js/routers/router.js"></script>-->
+
+   <!---->
+
+	<!--<header>-->
+			<!--<h2>Типи Книг</h2>-->
+	<!--</header>-->
+		<!--<div class="row">-->
+			<!--<div class="col-md-8">-->
+				<!--<table id="allBookTypes" class="table table-striped table-hover table-bordered">-->
+					<!--<thead>-->
+						<!--<tr>-->
+							<!--<th>ID</th>-->
+							<!--<th>ТИП</th>-->
+						<!--</tr>-->
+					<!--</thead>-->
+				<!--</table>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--<script>-->
+		<!--new Lib.Router();-->
+		<!--Backbone.history.start();-->
+
+		<!--Lib.bookTypes = new Lib.Collection.BookTypes();-->
+		<!--Lib.bookTypes.fetch().then(function() {-->
+			<!--new Lib.View.BookTypeApp({-->
+				<!--collection : Lib.bookTypes-->
+			<!--});-->
+		<!--});-->
+	<!--</script>-->
 </body>
 </html>

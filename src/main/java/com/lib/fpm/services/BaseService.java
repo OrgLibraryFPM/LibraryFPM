@@ -2,6 +2,8 @@ package com.lib.fpm.services;
 
 import java.util.List;
 
+import com.lib.fpm.pagination.Page;
+
 public interface BaseService<E> {
 	
 	public E create(E entity);
@@ -15,6 +17,8 @@ public interface BaseService<E> {
 	public Boolean delete(Long id);
 	
 	public List<E> findAll();
+	
+	public List<E> findAll(Page page);
 	
 	public E findById(Long id);
 	

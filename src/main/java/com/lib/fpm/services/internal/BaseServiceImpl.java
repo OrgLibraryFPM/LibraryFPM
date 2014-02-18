@@ -1,8 +1,10 @@
 package com.lib.fpm.services.internal;
 
 import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.lib.fpm.pagination.Page;
 import com.lib.fpm.repository.BaseRepository;
 import com.lib.fpm.services.BaseService;
 
@@ -43,6 +45,11 @@ public class BaseServiceImpl<E> implements BaseService<E> {
 	@Override
 	public List<E> findAll() {
 		return repository.findAll();
+	}
+	
+	@Override
+	public List<E> findAll(Page page) {
+		return repository.findAll(page.toPageable()).getContent();
 	}
 
 	@Override

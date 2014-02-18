@@ -222,7 +222,7 @@
   		<properties>
   			<libfpm.env>dev</libfpm.env>
   			<skip.recreate.database>false</skip.recreate.database>
-  			<skip.recreate.schema>true</skip.recreate.schema>
+  			<skip.recreate.schema>false</skip.recreate.schema>
   		</properties>
   		<activation>
   			<property>

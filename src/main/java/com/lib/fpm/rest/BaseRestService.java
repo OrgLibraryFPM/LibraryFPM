@@ -3,17 +3,19 @@ package com.lib.fpm.rest;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
+import com.lib.fpm.pagination.Page;
+import com.lib.fpm.pagination.PageJqGrid;
 import com.lib.fpm.services.BaseService;
 
 @Component
@@ -24,8 +26,10 @@ public class BaseRestService<E> {
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<E> findAll(){
-		return service.findAll();
+	public PageJqGrid<E> findAll(@QueryParam("rows") Integer rows, @QueryParam("page") Integer page,
+								 @QueryParam("sidx") String fieldSort, @QueryParam("sord") String sortType){
+		List<E> list = service.findAll(new Page(page, rows, fieldSort, sortType));
+		return new PageJqGrid<E>(page, service.count(), rows, list);
 	}
 	
 	@GET
@@ -51,7 +55,7 @@ public class BaseRestService<E> {
 		return service.createByList(entitys);
 	}
 	
-	@PUT
+	@POST
 	@Path("/updateOne")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -61,16 +65,16 @@ public class BaseRestService<E> {
 	
 	@PUT
 	@Path("/updateList")
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<E> updateList(List<E> entitys){
 		return service.updateByList(entitys);
 	}
 	
-	@DELETE
-	@Path("/{id}")
+	@POST
+	@Path("/del")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Boolean delete(@PathParam("id") final Long id){
+	public Boolean delete(Long id){
 		return service.delete(id);
 	}
 	
