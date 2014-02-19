@@ -2,70 +2,57 @@
 <html>
 <meta charset="utf-8">
 <head>
-<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/start/jquery-ui.css" type="text/css" />
-<link rel="stylesheet" href="lib/jqGrid/css/ui.jqgrid.css" type="text/css" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/start/jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="lib/jqGrid/css/ui.jqgrid.css" type="text/css" />
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js" > </script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.9.0/jquery-ui.min.js" ></script>
     <script type="text/javascript" src="lib/jqGrid/js/i18n/grid.locale-ua.js" ></script>
     <script type="text/javascript" src="lib/jqGrid/js/jquery.jqGrid.min.js" ></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js" ></script>
 </head>
 <body>
 
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <img class="img-rounded" src="img/fpm.jpg" width="100%" height="50"/>
+            </div>
+        </div>
+    </div>
+</header>
 
+<div class="container" id="tableContainer">
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked" id="myTabs">
+                <li class="active"><a href="#bookType" data-toggle="pill">Головна</a></li>
+                <li><a href="#publication" data-toggle="pill">Видавництва</a></li>
+            </ul>
+        </div>
 
-<table id="list2"></table>
-<div id="pager2"></div>
-<script>
+        <div class="col-md-9">
+            <div class="tab-content">
 
-    jQuery("#list2").jqGrid({
-        url:'/rest/bookType/all',
-        datatype: "json",
-        colNames:['ID','ТИП'],
-        colModel:[
-            {name:'id',index:'id', width:100},
-            {name:'type',index:'type', width:500, editable:true}
-        ],
-        rowNum:10,
-        rowList:[10,20,30],
-        pager: '#pager2',
-        sortname: 'id',
-        viewrecords: true,
-        sortorder: "asc",
-        caption:"Типи книг"
-    });
-    jQuery("#list2").jqGrid('navGrid','#pager2',
-            {
-                search:false,
-                edit:true,
-                add:true,
-                del:true
-            },
-            {
-                url:"/rest/bookType/updateOne",
-                closeAfterEdit: true,
-                ajaxEditOptions: { contentType: "application/json"},
-                serializeEditData : function(postdata, formid) {
-                    return (JSON.stringify(postdata, ["id","type"]));
-                }
-            },
-            {
-                url:"/rest/bookType/createOne",
-                closeAfterAdd: true,
-                ajaxEditOptions: { contentType: "application/json"},
-                serializeEditData : function(postdata, formid) {
-                    return (JSON.stringify(postdata, ["type"]));
-                }
-            },
-            {
-                url:"/rest/bookType/del",
-                ajaxDelOptions: { contentType: "application/json"},
-                serializeDelData : function(postdata, formid) {
-                    return (JSON.stringify($('#list2').jqGrid('getGridParam', 'selrow')));
-                }
-            }
-    );
-</script>
+                <div class="tab-pane active" id="bookType">
+                    <table id="bookTypeTable"></table>
+                    <div id="pagerBookType"></div>
+                    <script src="js/js/bookTypeTable.js" ></script>
+                </div>
+
+                <div class="tab-pane" id="publication">
+                    <table id="publicationTable"></table>
+                    <div id="pagerPublication"></div>
+                    <script src="js/js/publicationTable.js" ></script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 	<!--<script id="bookTypeTmp" type="text/template">-->
 		<!--<td><%= id %></td>-->
