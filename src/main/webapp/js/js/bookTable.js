@@ -2,8 +2,8 @@
 var entityName = "book";
 var pagerName = '#'+entityName+"Pager";
 
-var gridA = jQuery("#"+entityName+"Table")
-    gridA.jqGrid({
+var gridBook = jQuery("#"+entityName+"Table")
+    gridBook.jqGrid({
     url:"/rest/"+entityName+"/all",
     datatype: "json",
     colNames:['ID','Назва', 'Рік','ISBN','Опис','Тип'],
@@ -26,7 +26,7 @@ var gridA = jQuery("#"+entityName+"Table")
         jQuery(this).jqGrid('editGridRow', rowid);
     }
 });
-gridA.jqGrid('navGrid',pagerName,
+gridBook.jqGrid('navGrid',pagerName,
     {
         search:false,
         edit:true,
@@ -43,7 +43,7 @@ gridA.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("editmod", gridA);
+            toCenter("editmod", gridBook);
         }
     },
     {
@@ -55,7 +55,7 @@ gridA.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("editmod", gridA);
+            toCenter("editmod", gridBook);
         }
     },
     {
@@ -66,12 +66,12 @@ gridA.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("delmod", gridA);
+            toCenter("delmod", gridBook);
         }
     }
 );
 
 $(window).resize(function(){
-    gridA.jqGrid('setGridHeight',$(window).innerHeight()-200);
+    gridBook.jqGrid('setGridHeight',$(window).innerHeight()-200);
 });
 
