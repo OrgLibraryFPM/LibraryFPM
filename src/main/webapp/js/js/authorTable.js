@@ -1,15 +1,17 @@
-var entityName = "publication";
+
+var entityName = "author";
 var pagerName = '#'+entityName+"Pager";
 
-var gridP = jQuery("#"+entityName+"Table")
-    gridP.jqGrid({
+var gridA = jQuery("#"+entityName+"Table")
+    gridA.jqGrid({
     url:"/rest/"+entityName+"/all",
     datatype: "json",
-    colNames:['ID','Назва видавництва', 'Місто'],
+    colNames:['ID','Прізвище', 'Ім\'я','По-батькові'],
     colModel:[
         {name:'id',index:'id', width:100},
-        {name:'name',index:'name', width:300, editable:true},
-        {name:'city',index:'city', width:300, editable:true}
+        {name:'lastName',index:'lastName', width:200, editable:true},
+        {name:'firstName',index:'firstName', width:200, editable:true},
+        {name:'middleName',index:'middleName', width:200, editable:true}
     ],
     rowNum:10,
     rowList:[10,20,30],
@@ -17,12 +19,12 @@ var gridP = jQuery("#"+entityName+"Table")
     sortname: 'id',
     viewrecords: true,
     sortorder: "asc",
-    caption:"Видавництва",
+    caption:"Автори",
     ondblClickRow: function(rowid) {
         jQuery(this).jqGrid('editGridRow', rowid);
     }
 });
-gridP.jqGrid('navGrid',pagerName,
+gridA.jqGrid('navGrid',pagerName,
     {
         search:false,
         edit:true,
@@ -35,11 +37,11 @@ gridP.jqGrid('navGrid',pagerName,
         ajaxEditOptions: { contentType: "application/json"},
 
         serializeEditData : function(postdata, formid) {
-            return (JSON.stringify(postdata, ["id","name","city"]));
+            return (JSON.stringify(postdata, ["id","lastName","firstName", "middleName"]));
         },
 
         beforeShowForm:function(form){
-            toCenter("editmod", gridP);
+            toCenter("editmod", gridA);
         }
     },
     {
@@ -47,11 +49,11 @@ gridP.jqGrid('navGrid',pagerName,
         closeAfterAdd: true,
         ajaxEditOptions: { contentType: "application/json"},
         serializeEditData : function(postdata, formid) {
-            return (JSON.stringify(postdata, ["name","city"]));
+            return (JSON.stringify(postdata, ["lastName","firstName", "middleName"]));
         },
 
         beforeShowForm:function(form){
-            toCenter("editmod", gridP);
+            toCenter("editmod", gridA);
         }
     },
     {
@@ -62,12 +64,12 @@ gridP.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("delmod", gridP);
+            toCenter("delmod", gridA);
         }
     }
 );
 
 $(window).resize(function(){
-    gridP.jqGrid('setGridHeight',$(window).innerHeight()-200);
+    gridA.jqGrid('setGridHeight',$(window).innerHeight()-200);
 });
 

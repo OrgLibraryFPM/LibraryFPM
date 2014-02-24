@@ -26,7 +26,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="41" selection-start="1169" selection-end="1169" vertical-scroll-proportion="-3.2692308" vertical-offset="374" max-vertical-offset="1836">
+            <state line="77" column="33" selection-start="3161" selection-end="3161" vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="1581">
               <folding />
             </state>
           </provider>
@@ -35,17 +35,72 @@
       <file leaf-file-name="publicationTable.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/js/publicationTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="3" selection-start="1503" selection-end="1615" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1020">
+            <state line="57" column="33" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="1343">
+              <folding>
+                <marker date="1393154176625" expanded="true" signature="809:1181" placeholder="{&quot;closeAfterEdit&quot;: true...}" />
+                <marker date="1393154176625" expanded="true" signature="1187:1552" placeholder="{&quot;closeAfterAdd&quot;: true...}" />
+                <marker date="1393154176625" expanded="true" signature="1558:1918" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bookTypeTable.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/js/bookTypeTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="33" selection-start="728" selection-end="742" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1292">
+              <folding>
+                <marker date="1393154025992" expanded="true" signature="707:1072" placeholder="{&quot;closeAfterEdit&quot;: true...}" />
+                <marker date="1393154025992" expanded="true" signature="1078:1436" placeholder="{&quot;closeAfterAdd&quot;: true...}" />
+                <marker date="1393154025992" expanded="true" signature="1442:1796" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="authorTable.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/js/authorTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="62" column="59" selection-start="1909" selection-end="1909" vertical-scroll-proportion="0.0" vertical-offset="1054" max-vertical-offset="1377">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bookTypeTable.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/js/bookTypeTable.js">
+      <file leaf-file-name="bookTable.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/js/bookTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="21" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.9190476" vertical-offset="95" max-vertical-offset="1003">
+            <state line="14" column="43" selection-start="530" selection-end="530" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="1411">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="root-context.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WEB-INF/spring/root-context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="48" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.46547619" vertical-offset="0" max-vertical-offset="1037">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="readerTable.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/js/readerTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="7" selection-start="76" selection-end="76" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="1377">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="43" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="646">
+              <folding>
+                <marker date="1393163203859" expanded="true" signature="2:221" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,9 +115,15 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/js/publicationTable.js" />
+        <option value="$PROJECT_DIR$/js/js/autorTable.js" />
+        <option value="$PROJECT_DIR$/js/js/authorTable.js" />
         <option value="$PROJECT_DIR$/js/js/bookTypeTable.js" />
+        <option value="$PROJECT_DIR$/js/js/publicationTable.js" />
+        <option value="$PROJECT_DIR$/js/js/readerTable.js" />
+        <option value="$PROJECT_DIR$/js/js/main.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/js/bookTable.js" />
+        <option value="$PROJECT_DIR$/WEB-INF/spring/root-context.xml" />
       </list>
     </option>
   </component>
@@ -114,6 +175,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -245,7 +338,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290993" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14140625" sideWeight="0.6004619" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.209375" sideWeight="0.6709007" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995381" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
@@ -253,7 +346,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290993" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -305,46 +398,85 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="827" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/jqGrid/js/jquery.jqGrid.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9180">
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/bootstrap/js/bootstrap.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="827">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="827" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/lib/jqGrid/js/Changes.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="41" selection-start="1169" selection-end="1169" vertical-scroll-proportion="-3.2692308" vertical-offset="374" max-vertical-offset="1836">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="19822" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/js/publicationTable.js">
+    <entry file="file://$PROJECT_DIR$/lib/jqGrid/js/jquery.jqGrid.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="3" selection-start="1503" selection-end="1615" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1020">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9044">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/js/bookTypeTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="21" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.9190476" vertical-offset="95" max-vertical-offset="1003">
+        <state line="30" column="33" selection-start="728" selection-end="742" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1292">
+          <folding>
+            <marker date="1393154025992" expanded="true" signature="707:1072" placeholder="{&quot;closeAfterEdit&quot;: true...}" />
+            <marker date="1393154025992" expanded="true" signature="1078:1436" placeholder="{&quot;closeAfterAdd&quot;: true...}" />
+            <marker date="1393154025992" expanded="true" signature="1442:1796" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/js/publicationTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="33" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
+          <folding>
+            <marker date="1393154176625" expanded="true" signature="809:1181" placeholder="{&quot;closeAfterEdit&quot;: true...}" />
+            <marker date="1393154176625" expanded="true" signature="1187:1552" placeholder="{&quot;closeAfterAdd&quot;: true...}" />
+            <marker date="1393154176625" expanded="true" signature="1558:1918" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/js/readerTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="7" selection-start="76" selection-end="76" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1377">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="43" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <folding>
+            <marker date="1393163203859" expanded="true" signature="2:221" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/js/authorTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="59" selection-start="1909" selection-end="1909" vertical-scroll-proportion="0.0" vertical-offset="537" max-vertical-offset="1377">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="33" selection-start="3161" selection-end="3161" vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="1581">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/js/bookTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="43" selection-start="530" selection-end="530" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="1411">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WEB-INF/spring/root-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="48" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.46547619" vertical-offset="0" max-vertical-offset="1037">
           <folding />
         </state>
       </provider>

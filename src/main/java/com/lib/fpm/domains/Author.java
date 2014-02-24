@@ -10,11 +10,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 @Entity
 @Table(name="authors")
 @XmlRootElement
-public class Author extends Account{
+public class Author extends Account {
 	
 	private List<Book> books;
 	
@@ -22,11 +23,13 @@ public class Author extends Account{
 		super();
 	}
 	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "authors")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors")
+	@JsonBackReference
 	public List<Book> getBooks() {
 		return books;
 	}
 
+	@JsonBackReference
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}

@@ -12,6 +12,19 @@
     <script type="text/javascript" src="lib/jqGrid/js/i18n/grid.locale-ua.js" ></script>
     <script type="text/javascript" src="lib/jqGrid/js/jquery.jqGrid.min.js" ></script>
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="js/js/main.js" ></script>
+
+    <script>
+        var urlPrefix;
+        $(function() {
+            $('head').append('<script src="js/js/bookTypeTable.js"/>');
+            $('head').append('<script src="js/js/publicationTable.js"/>');
+            $('head').append('<script src="js/js/authorTable.js"/>');
+            $('head').append('<script src="js/js/readerTable.js"/>');
+            $('head').append('<script src="js/js/bookTable.js"/>');
+        });
+    </script>
+
 </head>
 <body>
 
@@ -31,6 +44,9 @@
             <ul class="nav nav-pills nav-stacked" id="myTabs">
                 <li class="active"><a href="#bookType" data-toggle="pill">Головна</a></li>
                 <li><a href="#publication" data-toggle="pill">Видавництва</a></li>
+                <li><a href="#author" data-toggle="pill">Автори</a></li>
+                <li><a href="#reader" data-toggle="pill">Читачі</a></li>
+                <li><a href="#book" data-toggle="pill">Видання</a></li>
             </ul>
         </div>
 
@@ -39,14 +55,27 @@
 
                 <div class="tab-pane active" id="bookType">
                     <table id="bookTypeTable"></table>
-                    <div id="pagerBookType"></div>
-                    <script src="js/js/bookTypeTable.js" ></script>
+                    <div id="bookTypePager"></div>
                 </div>
 
                 <div class="tab-pane" id="publication">
                     <table id="publicationTable"></table>
-                    <div id="pagerPublication"></div>
-                    <script src="js/js/publicationTable.js" ></script>
+                    <div id="publicationPager"></div>
+                </div>
+
+                <div class="tab-pane" id="author">
+                    <table id="authorTable"></table>
+                    <div id="authorPager"></div>
+                </div>
+
+                <div class="tab-pane" id="reader">
+                    <table id="readerTable"></table>
+                    <div id="readerPager"></div>
+                </div>
+
+                <div class="tab-pane" id="book">
+                    <table id="bookTable"></table>
+                    <div id="bookPager"></div>
                 </div>
             </div>
         </div>
@@ -54,49 +83,5 @@
 
 </div>
 
-	<!--<script id="bookTypeTmp" type="text/template">-->
-		<!--<td><%= id %></td>-->
-		<!--<td><%= type %></td>-->
-	<!--</script>-->
-
-	<!--<script src="lib/backbone/underscore.js"></script>-->
-	<!--<script src="lib/backbone/jquery.js"></script>-->
-	<!--<script src="lib/backbone/backbone.js"></script>-->
-	<!--<script src="https://code.jquery.com/jquery.js"></script>-->
-	<!--<script src="lib/bootstrap/js/bootstrap.min.js"></script>-->
-	<!--<script src="js/js/main.js"></script>-->
-	<!--<script src="js/models/bookType.js"></script>-->
-	<!--<script src="js/collections/bookTypes.js"></script>-->
-	<!--<script src="js/views/bookType.js"></script>-->
-	<!--<script src="js/routers/router.js"></script>-->
-
-   <!---->
-
-	<!--<header>-->
-			<!--<h2>Типи Книг</h2>-->
-	<!--</header>-->
-		<!--<div class="row">-->
-			<!--<div class="col-md-8">-->
-				<!--<table id="allBookTypes" class="table table-striped table-hover table-bordered">-->
-					<!--<thead>-->
-						<!--<tr>-->
-							<!--<th>ID</th>-->
-							<!--<th>ТИП</th>-->
-						<!--</tr>-->
-					<!--</thead>-->
-				<!--</table>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--<script>-->
-		<!--new Lib.Router();-->
-		<!--Backbone.history.start();-->
-
-		<!--Lib.bookTypes = new Lib.Collection.BookTypes();-->
-		<!--Lib.bookTypes.fetch().then(function() {-->
-			<!--new Lib.View.BookTypeApp({-->
-				<!--collection : Lib.bookTypes-->
-			<!--});-->
-		<!--});-->
-	<!--</script>-->
 </body>
 </html>

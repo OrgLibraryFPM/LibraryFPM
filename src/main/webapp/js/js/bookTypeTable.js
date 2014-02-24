@@ -1,6 +1,8 @@
+var entityName = "bookType";
+var pagerName = '#'+entityName+"Pager";
 
-jQuery("#bookTypeTable").jqGrid({
-    url:'/rest/bookType/all',
+var gridB = jQuery("#"+entityName+"Table").jqGrid({
+    url:"/rest/"+entityName+"/all",
     datatype: "json",
     colNames:['ID','ТИП'],
     colModel:[
@@ -9,13 +11,16 @@ jQuery("#bookTypeTable").jqGrid({
     ],
     rowNum:5,
     rowList:[5,10,20],
-    pager: '#pagerBookType',
+    pager: pagerName,
     sortname: 'id',
     viewrecords: true,
     sortorder: "asc",
-    caption:"Типи книг"
+    caption:"Типи книг",
+    ondblClickRow: function(rowid) {
+        jQuery(this).jqGrid('editGridRow', rowid);
+    }
 });
-jQuery("#bookTypeTable").jqGrid('navGrid','#pagerBookType',
+gridB.jqGrid('navGrid',pagerName,
     {
         search:false,
         edit:true,
@@ -23,31 +28,43 @@ jQuery("#bookTypeTable").jqGrid('navGrid','#pagerBookType',
         del:true
     },
     {
-        url:"/rest/bookType/updateOne",
+        url:"/rest/"+entityName+"/updateOne",
         closeAfterEdit: true,
         ajaxEditOptions: { contentType: "application/json"},
 
         serializeEditData : function(postdata, formid) {
             return (JSON.stringify(postdata, ["id","type"]));
+        },
+
+        beforeShowForm:function(form){
+            toCenter("editmod", gridB);
         }
     },
     {
-        url:"/rest/bookType/createOne",
+        url:"/rest/"+entityName+"/createOne",
         closeAfterAdd: true,
         ajaxEditOptions: { contentType: "application/json"},
         serializeEditData : function(postdata, formid) {
             return (JSON.stringify(postdata, ["type"]));
+        },
+
+        beforeShowForm:function(form){
+            toCenter("editmod", gridB);
         }
     },
     {
-        url:"/rest/bookType/del",
+        url:"/rest/"+entityName+"/del",
         ajaxDelOptions: { contentType: "application/json"},
         serializeDelData : function(postdata, formid) {
             return (JSON.stringify($('#bookTypeTable').jqGrid('getGridParam', 'selrow')));
+        },
+
+        beforeShowForm:function(form){
+            toCenter("delmod", gridB);
         }
     }
 );
 
 $(window).resize(function(){
-    $('#bookTypeTable').jqGrid('setGridHeight',$(window).innerHeight()-200);
+    gridB.jqGrid('setGridHeight',$(window).innerHeight()-200);
 });
