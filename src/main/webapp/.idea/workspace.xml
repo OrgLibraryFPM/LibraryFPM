@@ -26,21 +26,8 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="33" selection-start="3161" selection-end="3161" vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="1581">
+            <state line="55" column="59" selection-start="2351" selection-end="2351" vertical-scroll-proportion="-9.730769" vertical-offset="682" max-vertical-offset="1581">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="publicationTable.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/js/publicationTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="33" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="1343">
-              <folding>
-                <marker date="1393154176625" expanded="true" signature="809:1181" placeholder="{&quot;closeAfterEdit&quot;: true...}" />
-                <marker date="1393154176625" expanded="true" signature="1187:1552" placeholder="{&quot;closeAfterAdd&quot;: true...}" />
-                <marker date="1393154176625" expanded="true" signature="1558:1918" placeholder="{...}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -48,16 +35,7 @@
       <file leaf-file-name="bookTypeTable.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/js/bookTypeTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="33" selection-start="728" selection-end="742" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="authorTable.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/js/authorTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="59" selection-start="1909" selection-end="1909" vertical-scroll-proportion="0.0" vertical-offset="537" max-vertical-offset="1377">
+            <state line="30" column="33" selection-start="728" selection-end="742" vertical-scroll-proportion="0.0" vertical-offset="401" max-vertical-offset="1292">
               <folding />
             </state>
           </provider>
@@ -66,7 +44,7 @@
       <file leaf-file-name="bookTable.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/js/bookTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="36" selection-start="919" selection-end="919" vertical-scroll-proportion="0.56666666" vertical-offset="0" max-vertical-offset="1411">
+            <state line="7" column="21" selection-start="192" selection-end="192" vertical-scroll-proportion="0.14166667" vertical-offset="0" max-vertical-offset="1411">
               <folding />
             </state>
           </provider>
@@ -75,28 +53,8 @@
       <file leaf-file-name="root-context.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WEB-INF/spring/root-context.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="48" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1037">
+            <state line="23" column="48" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1037">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="readerTable.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/js/readerTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="7" selection-start="76" selection-end="76" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="1377">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="43" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="646">
-              <folding>
-                <marker date="1393163203859" expanded="true" signature="2:221" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -117,9 +75,9 @@
         <option value="$PROJECT_DIR$/js/js/publicationTable.js" />
         <option value="$PROJECT_DIR$/js/js/readerTable.js" />
         <option value="$PROJECT_DIR$/js/js/main.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/WEB-INF/spring/root-context.xml" />
         <option value="$PROJECT_DIR$/js/js/bookTable.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -155,7 +113,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -240,16 +197,17 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="editor.preferences.smartKeys" />
+    <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -262,14 +220,6 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -278,6 +228,14 @@
       <option name="saveOutputToFile" value="false" />
       <option name="showConsoleOnStdErr" value="false" />
       <option name="showConsoleOnStdOut" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
@@ -327,7 +285,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -415,9 +373,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="57" column="33" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
           <folding>
-            <marker date="1393154176625" expanded="true" signature="809:1181" placeholder="{&quot;closeAfterEdit&quot;: true...}" />
-            <marker date="1393154176625" expanded="true" signature="1187:1552" placeholder="{&quot;closeAfterAdd&quot;: true...}" />
-            <marker date="1393154176625" expanded="true" signature="1558:1918" placeholder="{...}" />
+            <marker date="1393154176625" expanded="true" signature="-1:-1" placeholder="{&quot;closeAfterEdit&quot;: true...}" />
+            <marker date="1393154176625" expanded="true" signature="-1:-1" placeholder="{&quot;closeAfterAdd&quot;: true...}" />
+            <marker date="1393154176625" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -426,15 +384,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="43" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
           <folding>
-            <marker date="1393163203859" expanded="true" signature="2:221" placeholder="..." />
+            <marker date="1393163203859" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="33" selection-start="3161" selection-end="3161" vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="1581">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -459,6 +410,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="59" selection-start="2351" selection-end="2351" vertical-scroll-proportion="-9.730769" vertical-offset="682" max-vertical-offset="1581">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/js/bookTypeTable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="33" selection-start="728" selection-end="742" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1292">
@@ -468,7 +426,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/js/bookTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="36" selection-start="919" selection-end="919" vertical-scroll-proportion="0.56666666" vertical-offset="0" max-vertical-offset="1411">
+        <state line="7" column="21" selection-start="192" selection-end="192" vertical-scroll-proportion="0.14166667" vertical-offset="0" max-vertical-offset="1411">
           <folding />
         </state>
       </provider>
