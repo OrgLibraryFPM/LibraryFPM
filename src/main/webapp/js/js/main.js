@@ -12,6 +12,7 @@
 //
 //
 //}());
+var tableHeight = $(window).innerHeight()-200;
 
 function toCenter(name, grid){
 

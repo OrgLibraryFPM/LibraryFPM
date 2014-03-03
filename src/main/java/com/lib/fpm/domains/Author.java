@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(name="authors")
@@ -24,12 +24,11 @@ public class Author extends Account {
 	}
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "authors")
-	@JsonBackReference
+	@JsonIgnore
 	public List<Book> getBooks() {
 		return books;
 	}
 
-	@JsonBackReference
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}

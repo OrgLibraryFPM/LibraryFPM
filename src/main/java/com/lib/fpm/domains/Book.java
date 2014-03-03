@@ -14,7 +14,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
 @Table(name="books")
@@ -94,12 +93,10 @@ public class Book extends IdDomain {
 			joinColumns = @JoinColumn(name="book_id", referencedColumnName="id"),
 	        inverseJoinColumns = @JoinColumn(name="author_id", referencedColumnName="id")
 	)
-	@JsonManagedReference
 	public List<Author> getAuthors() {
 		return authors;
 	}
 
-	@JsonManagedReference
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
 	}

@@ -1,7 +1,22 @@
 var entityName = "publication";
 var pagerName = '#'+entityName+"Pager";
 
-var gridP = jQuery("#"+entityName+"Table")
+var gridP = jQuery("#"+entityName+"Table");
+
+var editWindowP = {
+    url:"/rest/"+entityName+"/updateOne",
+    closeAfterEdit: true,
+    ajaxEditOptions: { contentType: "application/json"},
+
+    serializeEditData : function(postdata, formid) {
+        return (JSON.stringify(postdata, ["id","name","city"]));
+    },
+
+    beforeShowForm:function(form){
+        toCenter("editmod", gridP);
+    }
+};
+
     gridP.jqGrid({
     url:"/rest/"+entityName+"/all",
     datatype: "json",
@@ -18,8 +33,9 @@ var gridP = jQuery("#"+entityName+"Table")
     viewrecords: true,
     sortorder: "asc",
     caption:"Видавництва",
+    height:tableHeight,
     ondblClickRow: function(rowid) {
-        jQuery(this).jqGrid('editGridRow', rowid);
+        jQuery(this).jqGrid('editGridRow', rowid, editWindowP);
     }
 });
 gridP.jqGrid('navGrid',pagerName,
@@ -29,19 +45,7 @@ gridP.jqGrid('navGrid',pagerName,
         add:true,
         del:true
     },
-    {
-        url:"/rest/"+entityName+"/updateOne",
-        closeAfterEdit: true,
-        ajaxEditOptions: { contentType: "application/json"},
-
-        serializeEditData : function(postdata, formid) {
-            return (JSON.stringify(postdata, ["id","name","city"]));
-        },
-
-        beforeShowForm:function(form){
-            toCenter("editmod", gridP);
-        }
-    },
+    editWindowP,
     {
         url:"/rest/"+entityName+"/createOne",
         closeAfterAdd: true,

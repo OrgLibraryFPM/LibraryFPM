@@ -1,7 +1,23 @@
 var entityName = "bookType";
 var pagerName = '#'+entityName+"Pager";
 
-var gridB = jQuery("#"+entityName+"Table").jqGrid({
+var gridB = jQuery("#"+entityName+"Table");
+
+var editWindowB = {
+    url:"/rest/"+entityName+"/updateOne",
+    closeAfterEdit: true,
+    ajaxEditOptions: {contentType: "application/json"},
+
+    serializeEditData : function(postdata, formid) {
+        return (JSON.stringify(postdata, ["id","type"]));
+    },
+
+    beforeShowForm:function(form){
+        toCenter("editmod", gridB);
+    }
+};
+
+gridB.jqGrid({
     url:"/rest/"+entityName+"/all",
     datatype: "json",
     colNames:['ID','ТИП'],
@@ -16,10 +32,12 @@ var gridB = jQuery("#"+entityName+"Table").jqGrid({
     viewrecords: true,
     sortorder: "asc",
     caption:"Типи книг",
+    height:tableHeight,
     ondblClickRow: function(rowid) {
-        jQuery(this).jqGrid('editGridRow', rowid);
+        gridB.jqGrid('editGridRow', rowid,editWindowB);
     }
 });
+
 gridB.jqGrid('navGrid',pagerName,
     {
         search:false,
@@ -27,19 +45,7 @@ gridB.jqGrid('navGrid',pagerName,
         add:true,
         del:true
     },
-    {
-        url:"/rest/"+entityName+"/updateOne",
-        closeAfterEdit: true,
-        ajaxEditOptions: { contentType: "application/json"},
-
-        serializeEditData : function(postdata, formid) {
-            return (JSON.stringify(postdata, ["id","type"]));
-        },
-
-        beforeShowForm:function(form){
-            toCenter("editmod", gridB);
-        }
-    },
+    editWindowB,
     {
         url:"/rest/"+entityName+"/createOne",
         closeAfterAdd: true,
