@@ -47,13 +47,25 @@ var selectPublication = function(response){
     return res + "</select>";
 };
 
+function authorsFormatter ( cellvalue, options, rowObject )
+{
+    var res = "";
+    if (cellvalue && cellvalue.length){
+        jQuery.each(cellvalue, function(i,val){
+            res+=val.lastName+" "+val.firstName+" "+val.middleName+", ";
+        });
+    }
+    return res.substring(0, res.length - 2);
+}
+
 gridBook.jqGrid({
     url:"/rest/"+entityName+"/all",
     datatype: "json",
-    colNames:['ID','Назва', 'Рік','ISBN','Опис','Тип','Видання'],
+    width:700,
+    colNames:['ID','Назва', 'Рік','ISBN','Опис','Тип','Видання','Автори'],
     colModel:[
         {name:'id',index:'id', width:50},
-        {name:'name',index:'name', width:120, editable:true},
+        {name:'name',index:'name', width:200, editable:true},
         {name:'year',index:'year', width:50, editable:true},
         {name:'isbn',index:'isbn', width:100, editable:true},
         {name:'note',index:'note', width:180, editable:true},
@@ -70,7 +82,8 @@ gridBook.jqGrid({
                 dataUrl:"/rest/publication/list",
                 buildSelect: selectPublication
             }
-        }
+        },
+        {name:'authors', index:'authors',width:200,editable:false,formatter:authorsFormatter}
     ],
     rowNum:10,
     rowList:[10,20,30],
@@ -80,6 +93,8 @@ gridBook.jqGrid({
     sortorder: "asc",
     caption:"Видання",
     height: tableHeight,
+    autowidth:false,
+    shrinkToFit:false,
     ondblClickRow: function(rowid) {
         jQuery(this).jqGrid('editGridRow', rowid,editWindowBook);
     }
