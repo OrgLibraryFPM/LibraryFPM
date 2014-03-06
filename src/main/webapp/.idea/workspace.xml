@@ -26,16 +26,25 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="0" selection-start="1635" selection-end="1635" vertical-scroll-proportion="-14.961538" vertical-offset="274" max-vertical-offset="1598">
+            <state line="39" column="0" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.0" vertical-offset="274" max-vertical-offset="1598">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bookTable.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="bookTable.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/js/bookTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="20" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.32380953" vertical-offset="1377" max-vertical-offset="2567">
+            <state line="97" column="20" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.0" vertical-offset="1649" max-vertical-offset="2567">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="root-context.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WEB-INF/spring/root-context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="48" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.46547619" vertical-offset="0" max-vertical-offset="1037">
               <folding />
             </state>
           </provider>
@@ -44,7 +53,7 @@
       <file leaf-file-name="authorTable.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/js/authorTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="25" selection-start="835" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1445">
+            <state line="28" column="25" selection-start="835" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="1445">
               <folding />
             </state>
           </provider>
@@ -62,7 +71,7 @@
       <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="17" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+            <state line="14" column="17" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="663">
               <folding />
             </state>
           </provider>
@@ -85,8 +94,8 @@
         <option value="$PROJECT_DIR$/js/js/readerTable.js" />
         <option value="$PROJECT_DIR$/js/js/publicationTable.js" />
         <option value="$PROJECT_DIR$/js/js/bookTypeTable.js" />
-        <option value="$PROJECT_DIR$/WEB-INF/spring/root-context.xml" />
         <option value="$PROJECT_DIR$/js/js/bookTable.js" />
+        <option value="$PROJECT_DIR$/WEB-INF/spring/root-context.xml" />
       </list>
     </option>
   </component>
@@ -122,6 +131,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -206,17 +216,16 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="editor.preferences.smartKeys" />
+    <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -229,14 +238,6 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -245,6 +246,14 @@
       <option name="saveOutputToFile" value="false" />
       <option name="showConsoleOnStdErr" value="false" />
       <option name="showConsoleOnStdOut" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
@@ -295,13 +304,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1292" height="1000" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290993" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20924765" sideWeight="0.6709007" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20924765" sideWeight="0.6709007" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995381" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
@@ -399,14 +408,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="1635" selection-end="1635" vertical-scroll-proportion="-14.961538" vertical-offset="274" max-vertical-offset="1598">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WEB-INF/spring/root-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="45" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.46547619" vertical-offset="0" max-vertical-offset="1037">
+        <state line="39" column="0" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.0" vertical-offset="274" max-vertical-offset="1598">
           <folding />
         </state>
       </provider>
@@ -427,7 +429,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/js/bookTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="20" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.32380953" vertical-offset="1377" max-vertical-offset="2567">
+        <state line="97" column="20" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.0" vertical-offset="1649" max-vertical-offset="2567">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WEB-INF/spring/root-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="48" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.46547619" vertical-offset="0" max-vertical-offset="1037">
           <folding />
         </state>
       </provider>
