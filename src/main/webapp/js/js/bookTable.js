@@ -4,19 +4,21 @@ var pagerName = '#'+entityName+"Pager";
 
 var gridBook = jQuery("#"+entityName+"Table");
 
+//форма для редагування видавництва
 var editWindowBook =  {
     url:"/rest/"+entityName+"/updateOne",
     closeAfterEdit: true,
     ajaxEditOptions: { contentType: "application/json"},
     recreateForm: true,
     serializeEditData : function(postdata, formid) {
+        console.log(postdata);
         return (JSON.stringify({id:postdata.id,
                                 name:postdata.name,
                                 year:postdata.year,
                                 isbn:postdata.isbn,
                                 note:postdata.note,
-                                bookType:{id:postdata['bookType.type']},
-                                publication: {id:postdata['publication.name']}
+                                bookType:{id:postdata.bookType},
+                                publication: {id:postdata.publication}
                                }));
     },
 
@@ -25,6 +27,7 @@ var editWindowBook =  {
     }
 };
 
+//випадаючий список типів книжок
 var selectBookType = function(response){
     var data = $.parseJSON(response);
     var res = "<select>";
@@ -36,6 +39,7 @@ var selectBookType = function(response){
     return res + "</select>";
 };
 
+//випадаючий список видавництв
 var selectPublication = function(response){
     var data = $.parseJSON(response);
     var res = "<select>";
@@ -47,6 +51,7 @@ var selectPublication = function(response){
     return res + "</select>";
 };
 
+//формат виводу авторів у комірку таблиці
 function authorsFormatter ( cellvalue, options, rowObject )
 {
     var res = "";
@@ -56,6 +61,16 @@ function authorsFormatter ( cellvalue, options, rowObject )
         });
     }
     return res.substring(0, res.length - 2);
+}
+
+//формат виводу типів видавнь у комірку таблиці
+function bookTypeFormatter ( cellvalue, options, rowObject ){
+    return cellvalue.type;
+}
+
+//формат виводу видавництв у комірку таблиці
+function publicationFormatter ( cellvalue, options, rowObject ){
+    return cellvalue.name;
 }
 
 gridBook.jqGrid({
@@ -69,19 +84,21 @@ gridBook.jqGrid({
         {name:'year',index:'year', width:50, editable:true},
         {name:'isbn',index:'isbn', width:100, editable:true},
         {name:'note',index:'note', width:180, editable:true},
-        {name:'bookType.type',index:'bookType', width:100, editable:true, edittype:'select',
+        {name:'bookType',index:'bookType', width:100, editable:true, edittype:'select',
             editoptions:{
                 ajaxSelectOptions:{cache: false},
                 dataUrl:"/rest/bookType/list",
                 buildSelect: selectBookType
-            }
+            },
+            formatter:bookTypeFormatter
         },
-        {name:'publication.name',index:'publication', width:100, editable:true, edittype:'select',
+        {name:'publication',index:'publication', width:100, editable:true, edittype:'select',
             editoptions:{
                 ajaxSelectOptions:{cache: false},
                 dataUrl:"/rest/publication/list",
                 buildSelect: selectPublication
-            }
+            },
+            formatter: publicationFormatter
         },
         {name:'authors', index:'authors',width:200,editable:false,formatter:authorsFormatter}
     ],
@@ -117,8 +134,8 @@ gridBook.jqGrid('navGrid',pagerName,
                 year:postdata.year,
                 isbn:postdata.isbn,
                 note:postdata.note,
-                bookType:{id:postdata['bookType.type']},
-                publication: {id:postdata['publication.name']}
+                bookType:{id:postdata.bookType},
+                publication: {id:postdata.publication}
             }));
         },
 
