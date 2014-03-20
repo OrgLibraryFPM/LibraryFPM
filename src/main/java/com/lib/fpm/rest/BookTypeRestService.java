@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
@@ -16,17 +17,20 @@ import com.lib.fpm.services.BookTypeService;
 @Component
 @Path("/bookType")
 public class BookTypeRestService extends BaseRestService<BookType>  {
-	
-	 @Inject
-     public void setService(BookTypeService service) {
-             this.service = service;
-     }
-	 
+
+	@Inject
+	public void setService(BookTypeService service) {
+		this.service = service;
+	}
+
+	public BookTypeService getService() {
+		return (BookTypeService) service;
+	}
+
 	@GET
 	@Path("/list")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<BookType> findAll(){
-		List<BookType> list = service.findAll();
-		return list;
+	public List<BookType> findAll(@QueryParam("term") String likeValue) {
+		return getService().getByLike(likeValue);
 	}
 }

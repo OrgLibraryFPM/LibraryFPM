@@ -112,4 +112,30 @@ public class AuthorServiceTest extends PersistenceTest{
 		Long count = authorService.count();
 		assertEquals(Long.valueOf(3),count);
 	}
+	
+	@Test
+	public void testGetByLike(){
+		List<Author> list = authorService.getByLike("pup");
+		
+		assertThat(list, notNullValue());
+		assertThat(list.size(), is(1));
+		assertThat(list.get(0).getLastName(), is("Pupkin"));
+		
+		list = authorService.getByLike("vas");
+		
+		assertThat(list, notNullValue());
+		assertThat(list.size(), is(1));
+		assertThat(list.get(0).getFirstName(), is("Vasa"));
+	
+		list = authorService.getByLike("asyl");
+		
+		assertThat(list, notNullValue());
+		assertThat(list.size(), is(1));
+		assertThat(list.get(0).getMiddleName(), is("Vasyljvych"));
+		
+		list = authorService.getByLike("aw");
+		
+		assertThat(list, notNullValue());
+		assertThat(list.size(), is(0));
+	}
 }

@@ -1,6 +1,7 @@
 package com.lib.fpm.service;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,5 +96,26 @@ public class BookTypeServiceTest extends PersistenceTest{
 	public void testCount(){
 		Long count = bookTypeService.count();
 		assertEquals(Long.valueOf(2),count);
+	}
+	
+	@Test
+	public void testGetByLike(){
+		List<BookType> list = bookTypeService.getByLike("bo");
+		
+		assertThat(list, notNullValue());
+		assertThat(list.size(), is(1));
+		assertThat(list.get(0).getType(), is("book"));
+		
+		list = bookTypeService.getByLike("oo");
+		
+		assertThat(list, notNullValue());
+		assertThat(list.size(), is(1));
+		assertThat(list.get(0).getType(), is("book"));
+		
+		list = bookTypeService.getByLike("v");
+		
+		assertThat(list, notNullValue());
+		assertThat(list.size(), is(0));
+		
 	}
 }

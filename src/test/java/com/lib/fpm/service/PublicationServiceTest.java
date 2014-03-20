@@ -1,6 +1,11 @@
 package com.lib.fpm.service;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,5 +102,25 @@ public class PublicationServiceTest extends PersistenceTest{
 	public void testCount(){
 		Long count = publicationService.count();
 		assertEquals(Long.valueOf(2),count);
+	}
+	
+	@Test
+	public void testGetByLike(){
+		List<Publication> list = publicationService.getByLike("sim");
+		
+		assertThat(list, notNullValue());
+		assertThat(list.size(), is(1));
+		assertThat(list.get(0).getName(), is("simvol-plus"));
+		
+		list = publicationService.getByLike("i");
+		
+		assertThat(list, notNullValue());
+		assertThat(list.size(), is(2));
+		
+		list = publicationService.getByLike("w");
+		
+		assertThat(list, notNullValue());
+		assertThat(list.size(), is(0));
+		
 	}
 }

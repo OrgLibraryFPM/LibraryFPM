@@ -1,10 +1,11 @@
 package com.lib.fpm.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @Transactional
-public interface BaseRepository<E> extends JpaRepository<E, Long>{
+public interface BaseRepository<E> extends JpaRepository<E, Long>, JpaSpecificationExecutor<E>{
 
 }

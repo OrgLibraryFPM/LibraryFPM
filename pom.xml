@@ -17,6 +17,7 @@
   	<postgresqlVersion>9.1-901.jdbc4</postgresqlVersion>
   	<jersey.version>1.18</jersey.version>
   	<libfpm.env>dev</libfpm.env>
+  	<org.hibernate-jpamodelgen.version>1.2.0.Final</org.hibernate-jpamodelgen.version>
   </properties>
   
   <dependencies>
@@ -144,6 +145,12 @@
 			<version>1.0.1.Final</version>
 		</dependency>
 		
+		 <dependency>
+             <groupId>org.hibernate</groupId>
+             <artifactId>hibernate-jpamodelgen</artifactId>
+             <version>1.2.0.Final</version>
+         </dependency>
+		
 		<!-- DB -->
 		<dependency>
 			<groupId>postgresql</groupId>
@@ -220,7 +227,7 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.3.0</version>
 		</dependency>
-            
+		
   </dependencies>
   
   <profiles>
@@ -279,7 +286,7 @@
 				<configuration>
 					<source>${java-version}</source>
                     <target>${java-version}</target>
-					<compilerArgument>-Xlint:all</compilerArgument>
+					<proc>none</proc>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
 				</configuration>
@@ -412,7 +419,7 @@
 					</execution>
 					
 				</executions>
-			</plugin><!--  -->
+			</plugin>
 			
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
@@ -435,8 +442,48 @@
 			        </execution>
 			    </executions>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<version>2.2.4</version>
+				<executions>
+					<execution>
+						<id>process</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<outputDirectory>target/metamodel</outputDirectory>
+							<processors>
+								<processor>
+									org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor
+								</processor>
+							</processors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/metamodel</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
- <pluginManagement>
- </pluginManagement>
   </build>
 </project>
