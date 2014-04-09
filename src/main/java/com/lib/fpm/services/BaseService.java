@@ -2,6 +2,7 @@ package com.lib.fpm.services;
 
 import java.util.List;
 
+import com.lib.fpm.exceptions.DontDeleteRecordException;
 import com.lib.fpm.pagination.Page;
 
 public interface BaseService<E> {
@@ -14,7 +15,7 @@ public interface BaseService<E> {
 	
 	public List<E> updateByList(List<E> entitys);
 	
-	public Boolean delete(Long id);
+	public Boolean delete(Long id) throws DontDeleteRecordException;
 	
 	public List<E> findAll();
 	

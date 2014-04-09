@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.lib.fpm.exceptions.DontDeleteRecordException;
 import com.lib.fpm.pagination.Page;
 import com.lib.fpm.repository.BaseRepository;
 import com.lib.fpm.services.BaseService;
@@ -34,7 +35,7 @@ public class BaseServiceImpl<E> implements BaseService<E> {
 	}
 	
 	@Override
-	public Boolean delete(Long id) {
+	public Boolean delete(Long id) throws DontDeleteRecordException {
 		if(id!=null)
 			repository.delete(id);
 		else

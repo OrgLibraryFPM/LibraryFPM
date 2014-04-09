@@ -13,6 +13,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import com.lib.fpm.domains.Account;
 import com.lib.fpm.domains.Author;
+import com.lib.fpm.exceptions.DontDeleteRecordException;
 import com.lib.fpm.services.AuthorService;
 import com.lib.fpm.services.BookService;
 
@@ -80,7 +81,7 @@ public class AuthorServiceTest extends PersistenceTest{
 	}
 	
 	@Test
-	public void testDelete(){
+	public void testDelete() throws DontDeleteRecordException{
 		bookService.delete(2L);
 		authorService.delete(3L);
 		Author author = authorService.findById(3L);

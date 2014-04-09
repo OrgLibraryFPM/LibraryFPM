@@ -1,17 +1,22 @@
 package com.lib.fpm.domains;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "issuanses")
@@ -20,8 +25,8 @@ public class Issuanse extends IdDomain {
 
 	private Date dateIssuanse;
 	private Date dateReturn;
-	private Book book;
 	private Reader reader;
+	private List<Book> books;
 
 	public Issuanse() {
 		super();
@@ -46,16 +51,6 @@ public class Issuanse extends IdDomain {
 	}
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="book_id")
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
-	}
-
-	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="reader_id")
 	public Reader getReader() {
 		return reader;
@@ -65,13 +60,26 @@ public class Issuanse extends IdDomain {
 		this.reader = reader;
 	}
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="book_issuanse",
+			joinColumns = @JoinColumn(name="issuanse_id", referencedColumnName="id"),
+	        inverseJoinColumns = @JoinColumn(name="book_id", referencedColumnName="id")
+	)
+	@Fetch(value = FetchMode.SUBSELECT)
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.appendSuper(super.hashCode())
 				.append(dateIssuanse)
 				.append(dateReturn)
-				.append(book)
 				.append(reader).hashCode();
 	}
 
@@ -88,7 +96,6 @@ public class Issuanse extends IdDomain {
 				.appendSuper(super.equals(obj))
 				.append(dateIssuanse, other.dateIssuanse)
 				.append(dateReturn, other.dateReturn)
-				.append(book, other.book)
 				.append(reader, other.reader)
 				.isEquals();
 	}

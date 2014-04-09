@@ -1,6 +1,6 @@
 package com.lib.fpm.service;
 
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.lib.fpm.domains.Reader;
+import com.lib.fpm.exceptions.DontDeleteRecordException;
 import com.lib.fpm.services.ReaderService;
 
 public class ReaderServiceTest extends PersistenceTest{
@@ -76,7 +77,7 @@ public class ReaderServiceTest extends PersistenceTest{
 	}
 	
 	@Test
-	public void testDelete(){
+	public void testDelete() throws DontDeleteRecordException{
 		readerService.delete(1L);
 		Reader reader = readerService.findById(1L);
 		assertThat(reader, nullValue());
@@ -100,5 +101,20 @@ public class ReaderServiceTest extends PersistenceTest{
 	public void testCount(){
 		Long count = readerService.count();
 		assertEquals(Long.valueOf(3),count);
+	}
+	
+	@Test
+	public void testGetByLike(){
+		List<Reader> list = readerService.getByLike("shu");
+		assertThat(list, notNullValue());
+		assertThat(list, hasSize(1));
+		
+		list = readerService.getByLike("rom");
+		assertThat(list, notNullValue());
+		assertThat(list, hasSize(1));
+		
+		list = readerService.getByLike("owy");
+		assertThat(list, notNullValue());
+		assertThat(list, hasSize(1));
 	}
 }

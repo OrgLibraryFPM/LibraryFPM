@@ -143,7 +143,6 @@ ALTER TABLE ONLY readers ALTER COLUMN id SET DEFAULT nextval('readers_id_seq'::r
 CREATE TABLE issuanses
 (
   id bigint NOT NULL,
-  book_id bigint NOT NULL, 								-- книга
   reader_id bigint NOT NULL, 							-- читач
   date_issuanse timestamp without time zone NOT NULL,	-- дата видачі
   date_return timestamp without time zone,				-- дата повернення
@@ -160,9 +159,20 @@ CREATE SEQUENCE  issuanses_id_seq
 ALTER SEQUENCE  issuanses_id_seq OWNED BY  issuanses.id;
 
 ALTER TABLE ONLY issuanses ALTER COLUMN id SET DEFAULT nextval('issuanses_id_seq'::regclass);
-
-ALTER TABLE ONLY issuanses
-    ADD CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(id) ON UPDATE CASCADE;
     
 ALTER TABLE ONLY issuanses
     ADD CONSTRAINT fk_reader FOREIGN KEY (reader_id) REFERENCES readers(id) ON UPDATE CASCADE;
+    
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE book_issuanse
+(
+  issuanse_id bigint NOT NULL,
+  book_id bigint NOT NULL
+);
+
+ALTER TABLE ONLY book_issuanse
+	ADD CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books (id) MATCH SIMPLE ON UPDATE CASCADE;
+ 
+ALTER TABLE ONLY book_issuanse
+	ADD CONSTRAINT fk_issuanse FOREIGN KEY (issuanse_id) REFERENCES issuanses (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;

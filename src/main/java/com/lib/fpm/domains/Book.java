@@ -14,6 +14,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="books")
@@ -27,6 +30,7 @@ public class Book extends IdDomain {
 	private BookType bookType;
 	private Publication publication;
 	private List<Author> authors;
+	private List<Issuanse> issuanses;
 	
 	public Book() {
 		super();
@@ -93,12 +97,23 @@ public class Book extends IdDomain {
 			joinColumns = @JoinColumn(name="book_id", referencedColumnName="id"),
 	        inverseJoinColumns = @JoinColumn(name="author_id", referencedColumnName="id")
 	)
+	@Fetch(value = FetchMode.SUBSELECT)
 	public List<Author> getAuthors() {
 		return authors;
 	}
 
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
+	}
+
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "books")
+	@JsonIgnore
+	public List<Issuanse> getIssuanses() {
+		return issuanses;
+	}
+
+	public void setIssuanses(List<Issuanse> issuanses) {
+		this.issuanses = issuanses;
 	}
 
 	@Override

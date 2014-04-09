@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.lib.fpm.domains.Publication;
+import com.lib.fpm.exceptions.DontDeleteRecordException;
 import com.lib.fpm.services.BookService;
 import com.lib.fpm.services.PublicationService;
 
@@ -76,7 +77,7 @@ public class PublicationServiceTest extends PersistenceTest{
 	}
 	
 	@Test
-	public void testDelete(){
+	public void testDelete() throws DontDeleteRecordException{
 		publicationService.delete(1L);
 		Publication publication = publicationService.findById(1L);
 		assertNull(publication);

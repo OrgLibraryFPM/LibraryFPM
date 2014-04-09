@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.lib.fpm.domains.BookType;
+import com.lib.fpm.exceptions.DontDeleteRecordException;
 import com.lib.fpm.services.BookService;
 import com.lib.fpm.services.BookTypeService;
 
@@ -71,7 +72,7 @@ public class BookTypeServiceTest extends PersistenceTest{
 	}
 	
 	@Test
-	public void testDelete(){
+	public void testDelete() throws DontDeleteRecordException{
 		bookTypeService.delete(1L);
 		BookType bookType = bookTypeService.findById(1L);
 		assertNull(bookType);

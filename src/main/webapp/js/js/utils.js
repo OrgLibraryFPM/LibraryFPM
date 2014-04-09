@@ -21,6 +21,13 @@ function toCenter(name, grid){
     dlgDiv[0].style.left = Math.round(  parentLeft + (parentWidth-dlgWidth)/2 )  + "px";
 };
 
+//Форматер для виводу дати
+function dateFormatter (cellval, opts) {
+    var date = new Date(cellval);
+    opts = $.extend({}, $.jgrid.formatter.date, opts);
+    return $.datepicker.formatDate('dd.mm.yy', date);
+}
+
 // виділення шуканого фрагменту в авто підказці
 function highlightText(text, $node) {
     var searchText = $.trim(text).toLowerCase(), currentNode = $node.get(0).firstChild, matchIndex, newTextNode, newSpanNode;

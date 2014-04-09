@@ -1,7 +1,7 @@
 package com.lib.fpm.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,16 +11,16 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.junit.Test;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import com.lib.fpm.domains.Book;
 import com.lib.fpm.domains.Issuanse;
+import com.lib.fpm.exceptions.DontDeleteRecordException;
 import com.lib.fpm.services.BookService;
 import com.lib.fpm.services.IssuanseService;
 import com.lib.fpm.services.ReaderService;
 
-public class IssuanseServiceTest extends PersistenceTest{
-	
+public class IssuanseServiceTest extends PersistenceTest {
+ 
 	@Inject
 	private IssuanseService issuanseService;
 	
@@ -40,7 +40,6 @@ public class IssuanseServiceTest extends PersistenceTest{
 		Issuanse issuanse = new Issuanse();
 		issuanse.setDateIssuanse(calendarIss.getTime());
 		issuanse.setDateIssuanse(calendarRet.getTime());
-		issuanse.setBook(bookService.findById(1L));
 		issuanse.setReader(readerService.findById(1L));
 		
 		Issuanse test = issuanseService.create(issuanse);
@@ -53,7 +52,6 @@ public class IssuanseServiceTest extends PersistenceTest{
 		List<Issuanse> issuanses = new ArrayList<Issuanse>();
 		for (int i = 0; i < size; i++) {
 			Issuanse issuanse = new Issuanse();
-			issuanse.setBook(bookService.findById(1L));
 			issuanse.setReader(readerService.findById(2L));
 			issuanse.setDateIssuanse(new Date());
 			issuanses.add(issuanse);
@@ -81,20 +79,32 @@ public class IssuanseServiceTest extends PersistenceTest{
 	public void testUpdate(){
 		Issuanse issuanse = issuanseService.findById(1L);
 		Book book = bookService.findById(1L);
-		issuanse.setBook(book);
+		List<Book> books = new ArrayList<Book>();
+		books.add(book);
+		issuanse.setBooks(books);
 		
 		Issuanse test = issuanseService.update(issuanse);
 		assertNotNull(test);
-		assertEquals(book, test.getBook());
+		assertThat(test.getBooks(), notNullValue());
+		assertThat(test.getBooks(), hasSize(1));
+		assertThat(test.getBooks(), hasItem(book));
 	}
 	
 	@Test
-	public void testDelete(){
-		try {
-			issuanseService.delete(1L);
-		} catch (DataIntegrityViolationException e) {
-		}
+	public void testDelete() throws DontDeleteRecordException{
+		issuanseService.delete(1L);
+		
+		assertThat(issuanseService.count(), is(1L));
+		Book book = bookService.findById(3L);
+		assertThat(book, notNullValue());
+		assertThat(book.getIssuanses(), hasSize(1));
+	}
+	
+	@Test(expected=DontDeleteRecordException.class)
+	public void testDelete_exception() throws DontDeleteRecordException{
+		issuanseService.delete(2L);
 	}	
+	
 	@Test
 	public void testFindById(){
 		Issuanse issuanse = issuanseService.findById(1L);

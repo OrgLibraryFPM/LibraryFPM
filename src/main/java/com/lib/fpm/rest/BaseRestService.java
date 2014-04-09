@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
+import com.lib.fpm.exceptions.DontDeleteRecordException;
 import com.lib.fpm.pagination.Page;
 import com.lib.fpm.pagination.PageJqGrid;
 import com.lib.fpm.services.BaseService;
@@ -74,7 +75,7 @@ public class BaseRestService<E> {
 	@Path("/del")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Boolean delete(Long id){
+	public Boolean delete(Long id) throws DontDeleteRecordException{
 		return service.delete(id);
 	}
 	

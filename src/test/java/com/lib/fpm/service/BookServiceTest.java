@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.lib.fpm.domains.Book;
+import com.lib.fpm.exceptions.DontDeleteRecordException;
 import com.lib.fpm.services.AuthorService;
 import com.lib.fpm.services.BookService;
 import com.lib.fpm.services.BookTypeService;
@@ -91,7 +92,7 @@ public class BookServiceTest extends PersistenceTest{
 	}
 	
 	@Test
-	public void testDelete(){
+	public void testDelete() throws DontDeleteRecordException{
 		bookService.delete(1L);
 		Book book = bookService.findById(1L);
 		assertNull(book);
@@ -112,12 +113,12 @@ public class BookServiceTest extends PersistenceTest{
 	public void testFindAll(){
 		List<Book> books = bookService.findAll();
 		assertNotNull(books);
-		assertEquals(3,books.size());
+		assertEquals(5,books.size());
 	}
 	
 	@Test
 	public void testCount(){
 		Long count = bookService.count();
-		assertEquals(Long.valueOf(3),count);
+		assertEquals(Long.valueOf(5),count);
 	}
 }
