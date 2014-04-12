@@ -255,6 +255,20 @@
   	</profile>
   	
   	<profile>
+  		<id>Dedelop_Work</id>
+  		<properties>
+  			<libfpm.env>work</libfpm.env>
+  			<skip.recreate.database>false</skip.recreate.database>
+  			<skip.recreate.schema>false</skip.recreate.schema>
+  		</properties>
+  		<activation>
+  			<property>
+  				<name>developWork</name>
+  			</property>
+  		</activation>
+  	</profile>
+  	
+  	<profile>
   		<id>Heroku</id>
   		<properties>
   			<libfpm.env>heroku</libfpm.env>

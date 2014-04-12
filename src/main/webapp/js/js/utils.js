@@ -23,6 +23,9 @@ function toCenter(name, grid){
 
 //Форматер для виводу дати
 function dateFormatter (cellval, opts) {
+    if (cellval==null){
+        return "";
+    }
     var date = new Date(cellval);
     opts = $.extend({}, $.jgrid.formatter.date, opts);
     return $.datepicker.formatDate('dd.mm.yy', date);

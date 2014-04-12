@@ -4,20 +4,20 @@ var pagerName = '#'+entityName+"Pager";
 
 var gridIssuanse = jQuery("#"+entityName+"Table");
 
-function splitReadersId(readerIds){
-    var ids = split(readerIds);
+function splitBooksId(bookIds){
+    var ids = split(bookIds);
     if (ids[ids.length-1].length==0){
         ids.pop();
     }
-    var readers=[];
+    var books=[];
     jQuery.each(ids, function(i,val){
-        readers[i] = {id:val};
+        books[i] = {id:val};
     });
-    return  readers;
+    return  books;
 }
 
 //форма для редагування видавництва
-var editWindowBook =  {
+var editWindowIssuanse =  {
     url:"/rest/"+entityName+"/updateOne",
     closeAfterEdit: true,
     ajaxEditOptions: { contentType: "application/json"},
@@ -25,19 +25,30 @@ var editWindowBook =  {
     resize:false,
     zIndex:99,
     serializeEditData : function(postdata, formid) {
-
-        return (JSON.stringify({id:postdata.id,
-                                name:postdata.name,
-                                year:postdata.year,
-                                isbn:postdata.isbn,
-                                note:postdata.note,
-                                bookType:{id:postdata.bookTypeId},
-                                publication: {id:postdata.publicationId},
-                                authors: splitReadersId(postdata.authorIds)
-                               }));
+        var dateSplit = postdata.dateIssuanse.split(".");
+        var dateIssuanse = new Date(dateSplit[2], parseInt(dateSplit[1])-1,dateSplit[0]).getTime();
+        var dateReturn = null;
+        if (postdata.dateReturn="true"){
+            dateReturn = new Date().getTime();
+        }
+        return (JSON.stringify({
+            id: postdata.id,
+            reader:{id:postdata.readerId},
+            dateIssuanse:dateIssuanse,
+            dateReturn:dateReturn,
+            books: splitBooksId(postdata.bookIds)
+        }));
     },
 
     beforeShowForm:function(form){
+        $('#tr_dateIssuanse', form).hide();
+        var  selRowId = gridIssuanse.jqGrid ('getGridParam', 'selrow');
+        var celValue = gridIssuanse.jqGrid ('getCell', selRowId, 'dateReturn');
+        if (celValue.length>0){
+            var b =$('#dateReturn', form);
+            b.prop('checked',true);
+        }
+        $("#tr_dateReturn").find("td.CaptionTD").text("Повернуто");
         toCenter("editmod", gridIssuanse);
     }
 };
@@ -59,38 +70,21 @@ function readerFormatter ( cellvalue, options, rowObject ){
     return cellvalue.lastName+" "+cellvalue.firstName+" "+cellvalue.middleName;
 }
 
-//формат виводу видавництв у комірку таблиці
-function publicationFormatter ( cellvalue, options, rowObject ){
-    return cellvalue.name;
-}
-
-function publicationFormatterId ( cellvalue, options, rowObject ){
-    return rowObject.publication.id;
-}
-
 function readerFormatterId ( cellvalue, options, rowObject ){
     return rowObject.reader.id;
 }
 
-function readersFormatterId ( cellvalue, options, rowObject ){
+function booksFormatterId ( cellvalue, options, rowObject ){
     var res = "";
-    if (rowObject.authors && rowObject.authors.length){
-        jQuery.each(rowObject.authors, function(i,val){
+    if (rowObject.books && rowObject.books.length){
+        jQuery.each(rowObject.books, function(i,val){
             res+=val.id+",";
         });
     }
     return res;
 };
 
-var bookTypeToAutocomplete = function (item) {
-    return {
-        id: item.id,
-        label: item.type,
-        value: item.type
-    }
-};
-
-var publicationToAutocomplete = function (item) {
+var bookToAutocomplete = function (item) {
     return {
         id: item.id,
         label: item.name,
@@ -123,17 +117,17 @@ gridIssuanse.jqGrid({
         },
         {name:'readerId', index:'readerId', hidden:true, editable:true, formatter:readerFormatterId},
         {name:'dateIssuanse',index:'dateIssuanse', width:75, editable:true, sorttype:"date", formatter:dateFormatter},
-        {name:'dateReturn',index:'dateReturn', width:75, editable:true, sorttype:"date" , formatter:dateFormatter},
+        {name:'dateReturn',index:'dateReturn', width:75, editable:true, edittype: "checkbox", editoptions: {value: "true:false"}, sorttype:"date" , formatter:dateFormatter},
         {name:'books',index:'books', width:329, editable:true, formatter:booksFormatter, edittype: "textarea",
             editoptions:{
                 rows:4,
                 cols:25,
                 dataInit: function (elem) {
-                    autocompleteMultiple(elem, "/rest/reader/list", "readerIds",authorToAutocomplete);
+                    autocompleteMultiple(elem, "/rest/book/list", "bookIds",bookToAutocomplete);
                 }
             }
         },
-        {name:'readerIds', index:'readerIds', hidden:true, editable:true, formatter:readersFormatterId}
+        {name:'bookIds', index:'bookIds', hidden:true, editable:true, formatter:booksFormatterId}
     ],
     rowNum:10,
     rowList:[10,20,30],
@@ -146,7 +140,7 @@ gridIssuanse.jqGrid({
     autowidth:false,
     shrinkToFit:false,
     ondblClickRow: function(rowid) {
-        jQuery(this).jqGrid('editGridRow', rowid,editWindowBook);
+        jQuery(this).jqGrid('editGridRow', rowid,editWindowIssuanse);
     }
 });
 gridIssuanse.jqGrid('navGrid',pagerName,
@@ -156,7 +150,7 @@ gridIssuanse.jqGrid('navGrid',pagerName,
         add:true,
         del:true
     },
-    editWindowBook,
+    editWindowIssuanse,
     {
         url:"/rest/"+entityName+"/createOne",
         closeAfterAdd: true,
@@ -165,15 +159,19 @@ gridIssuanse.jqGrid('navGrid',pagerName,
         resize:false,
         recreateForm: true,
         serializeEditData : function(postdata, formid) {
+            var dateIssuanse = new Date().getTime();
+            var dateReturn = null;
             return (JSON.stringify({
                 reader:{id:postdata.readerId},
-                dateIssuanse:postdata.dateIssuanse,
-                dateReturn:postdata.dateReturn,
-                books: splitReadersId(postdata.readerIds)
+                dateIssuanse:dateIssuanse,
+                dateReturn:dateReturn,
+                books: splitBooksId(postdata.bookIds)
             }));
         },
 
         beforeShowForm:function(form){
+            $('#tr_dateIssuanse', form).hide();
+            $('#tr_dateReturn', form).hide();
             toCenter("editmod", gridIssuanse);
         }
     },
@@ -181,7 +179,8 @@ gridIssuanse.jqGrid('navGrid',pagerName,
         url:"/rest/"+entityName+"/del",
         ajaxDelOptions: { contentType: "application/json"},
         serializeDelData : function(postdata, formid) {
-            return (JSON.stringify($("#"+entityName+"Table").jqGrid('getGridParam', 'selrow')));
+            var value = gridIssuanse.jqGrid('getGridParam', 'selrow');
+            return (JSON.stringify(value));
         },
 
         beforeShowForm:function(form){
