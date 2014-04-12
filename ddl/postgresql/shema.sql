@@ -78,6 +78,11 @@ CREATE TABLE books
   note text,                                        -- опис
   book_type_id bigint,                              -- тип видання
   publication_id bigint,                            -- тип видання
+  tome smallint,									-- том 
+  number smallint,									-- номер
+  part smallint,									-- частина
+  series smallint,									-- серія
+  page_count smallint,								-- к-сть сторінок						
   CONSTRAINT books_pkey PRIMARY KEY (id)
 );
 

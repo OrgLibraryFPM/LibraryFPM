@@ -31,6 +31,11 @@ var editWindowBook =  {
                                 year:postdata.year,
                                 isbn:postdata.isbn,
                                 note:postdata.note,
+                                tome:postdata.tome,
+                                number:postdata.number,
+                                part:postdata.part,
+                                series:postdata.series,
+                                pageCount:postdata.pageCount,
                                 bookType:{id:postdata.bookTypeId},
                                 publication: {id:postdata.publicationId},
                                 authors: splitAuthorsId(postdata.authorIds)
@@ -42,13 +47,17 @@ var editWindowBook =  {
     }
 };
 
+function toUpperFirstSymwol(str){
+    return str.charAt(0).toUpperCase();
+}
+
 //формат виводу авторів у комірку таблиці
 function authorsFormatter ( cellvalue, options, rowObject )
 {
     var res = "";
     if (cellvalue && cellvalue.length){
         jQuery.each(cellvalue, function(i,val){
-            res+=val.lastName+" "+val.firstName+" "+val.middleName+", ";
+            res+=val.lastName+" "+toUpperFirstSymwol(val.firstName)+". "+toUpperFirstSymwol(val.middleName)+"., ";
         });
     }
     return res.substring(0, res.length - 2);
@@ -111,7 +120,7 @@ gridBook.jqGrid({
     url:"/rest/"+entityName+"/all",
     datatype: "json",
     width:700,
-    colNames:['ID','Назва', 'Рік','ISBN','Опис','Тип','','Видання','','Автори',''],
+    colNames:['ID','Назва', 'Рік','ISBN','Опис','Тип','','Видання','','Автори','','Том','Номер','Частина','Серія','К-сть сторінок'],
     colModel:[
         {name:'id',index:'id', width:50},
         {name:'name',index:'name', width:200, editable:true},
@@ -146,7 +155,12 @@ gridBook.jqGrid({
             },
             formatter:authorsFormatter
         },
-        {name:'authorIds', index:'authorIds', hidden:true, editable:true, formatter:authorsFormatterId}
+        {name:'authorIds', index:'authorIds', hidden:true, editable:true, formatter:authorsFormatterId},
+        {name:'tome',index:'tome', width:50, editable:true},
+        {name:'number',index:'number', width:50, editable:true},
+        {name:'part',index:'part', width:50, editable:true},
+        {name:'series',index:'series', width:50, editable:true},
+        {name:'pageCount',index:'pageCount', width:50, editable:true},
     ],
     rowNum:10,
     rowList:[10,20,30],
@@ -183,6 +197,11 @@ gridBook.jqGrid('navGrid',pagerName,
                 year:postdata.year,
                 isbn:postdata.isbn,
                 note:postdata.note,
+                tome:postdata.tome,
+                number:postdata.number,
+                part:postdata.part,
+                series:postdata.series,
+                pageCount:postdata.pageCount,
                 bookType:{id:postdata.bookTypeId},
                 publication: {id:postdata.publicationId},
                 authors: splitAuthorsId(postdata.authorIds)
@@ -197,7 +216,7 @@ gridBook.jqGrid('navGrid',pagerName,
         url:"/rest/"+entityName+"/del",
         ajaxDelOptions: { contentType: "application/json"},
         serializeDelData : function(postdata, formid) {
-            return (JSON.stringify($("#"+entityName+"Table").jqGrid('getGridParam', 'selrow')));
+            return (JSON.stringify(gridBook.jqGrid('getGridParam', 'selrow')));
         },
 
         beforeShowForm:function(form){

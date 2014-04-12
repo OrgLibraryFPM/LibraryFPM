@@ -31,6 +31,11 @@ public class Book extends IdDomain {
 	private Publication publication;
 	private List<Author> authors;
 	private List<Issuanse> issuanses;
+	private Integer tome;
+	private Integer number;
+	private Integer part;
+	private Integer series;
+	private Integer pageCount;
 	
 	public Book() {
 		super();
@@ -116,6 +121,51 @@ public class Book extends IdDomain {
 		this.issuanses = issuanses;
 	}
 
+	@Column(name="tome")
+	public Integer getTome() {
+		return tome;
+	}
+
+	public void setTome(Integer tome) {
+		this.tome = tome;
+	}
+
+	@Column(name="number")
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	@Column(name="part")
+	public Integer getPart() {
+		return part;
+	}
+
+	public void setPart(Integer part) {
+		this.part = part;
+	}
+
+	@Column(name="series")
+	public Integer getSeries() {
+		return series;
+	}
+
+	public void setSeries(Integer series) {
+		this.series = series;
+	}
+
+	@Column(name="page_count")
+	public Integer getPageCount() {
+		return pageCount;
+	}
+
+	public void setPageCount(Integer pageCount) {
+		this.pageCount = pageCount;
+	}
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
@@ -126,6 +176,11 @@ public class Book extends IdDomain {
 				.append(note)
 				.append(bookType)
 				.append(publication)
+				.append(tome)
+				.append(number)
+				.append(part)
+				.append(series)
+				.append(pageCount)
 				.hashCode();
 	}
 
@@ -146,6 +201,11 @@ public class Book extends IdDomain {
 				.append(note, other.note)
 				.append(bookType, other.bookType)
 				.append(publication, other.publication)
+				.append(tome, other.tome)
+				.append(number, other.number)
+				.append(part, other.part)
+				.append(series, other.series)
+				.append(pageCount, other.pageCount)
 				.isEquals();
 	}
 }
