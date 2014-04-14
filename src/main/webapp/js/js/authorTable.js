@@ -2,7 +2,7 @@
 var entityName = "author";
 var pagerName = '#'+entityName+"Pager";
 
-var gridA = jQuery("#"+entityName+"Table");
+var gridAuthor = jQuery("#"+entityName+"Table");
 
 var editWindowA = {
     url:"/rest/"+entityName+"/updateOne",
@@ -14,11 +14,11 @@ var editWindowA = {
     },
 
     beforeShowForm:function(form){
-        toCenter("editmod", gridA);
+        toCenter("editmod", gridAuthor);
     }
 };
 
-  gridA.jqGrid({
+  gridAuthor.jqGrid({
     url:"/rest/"+entityName+"/all",
     datatype: "json",
     colNames:['ID','Прізвище', 'Ім\'я','По-батькові'],
@@ -36,16 +36,18 @@ var editWindowA = {
     sortorder: "asc",
     caption:"Автори",
     height:tableHeight,
+    toppager: true,
     ondblClickRow: function(rowid) {
         jQuery(this).jqGrid('editGridRow', rowid,editWindowA);
     }
 });
-gridA.jqGrid('navGrid',pagerName,
+gridAuthor.jqGrid('navGrid',pagerName,
     {
         search:false,
         edit:true,
         add:true,
-        del:true
+        del:true,
+        cloneToTop:true
     },
     editWindowA,
     {
@@ -57,7 +59,7 @@ gridA.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("editmod", gridA);
+            toCenter("editmod", gridAuthor);
         }
     },
     {
@@ -68,12 +70,14 @@ gridA.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("delmod", gridA);
+            toCenter("delmod", gridAuthor);
         }
     }
 );
 
+editingButtonToTop(gridAuthor, pagerName);
+
 $(window).resize(function(){
-    gridA.jqGrid('setGridHeight',$(window).innerHeight()-200);
+    gridAuthor.jqGrid('setGridHeight',$(window).innerHeight()-200);
 });
 

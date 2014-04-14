@@ -1,7 +1,7 @@
 var entityName = "bookType";
 var pagerName = '#'+entityName+"Pager";
 
-var gridB = jQuery("#"+entityName+"Table");
+var gridBookType = jQuery("#"+entityName+"Table");
 
 var editWindowB = {
     url:"/rest/"+entityName+"/updateOne",
@@ -13,11 +13,11 @@ var editWindowB = {
     },
 
     beforeShowForm:function(form){
-        toCenter("editmod", gridB);
+        toCenter("editmod", gridBookType);
     }
 };
 
-gridB.jqGrid({
+gridBookType.jqGrid({
     url:"/rest/"+entityName+"/all",
     datatype: "json",
     colNames:['ID','ТИП'],
@@ -33,17 +33,19 @@ gridB.jqGrid({
     sortorder: "asc",
     caption:"Типи книг",
     height:tableHeight,
+    toppager: true,
     ondblClickRow: function(rowid) {
-        gridB.jqGrid('editGridRow', rowid,editWindowB);
+        gridBookType.jqGrid('editGridRow', rowid,editWindowB);
     }
 });
 
-gridB.jqGrid('navGrid',pagerName,
+gridBookType.jqGrid('navGrid',pagerName,
     {
         search:false,
         edit:true,
         add:true,
-        del:true
+        del:true,
+        cloneToTop:true
     },
     editWindowB,
     {
@@ -55,7 +57,7 @@ gridB.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("editmod", gridB);
+            toCenter("editmod", gridBookType);
         }
     },
     {
@@ -66,11 +68,13 @@ gridB.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("delmod", gridB);
+            toCenter("delmod", gridBookType);
         }
     }
 );
 
+editingButtonToTop(gridBookType, pagerName);
+
 $(window).resize(function(){
-    gridB.jqGrid('setGridHeight',$(window).innerHeight()-200);
+    gridBookType.jqGrid('setGridHeight',$(window).innerHeight()-200);
 });

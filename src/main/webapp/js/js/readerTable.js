@@ -2,7 +2,7 @@
 var entityName = "reader";
 var pagerName = '#'+entityName+"Pager";
 
-var gridR = jQuery("#"+entityName+"Table")
+var gridReader = jQuery("#"+entityName+"Table")
 var editWindowR = {
     url:"/rest/"+entityName+"/updateOne",
     closeAfterEdit: true,
@@ -13,10 +13,10 @@ var editWindowR = {
     },
 
     beforeShowForm:function(form){
-        toCenter("editmod", gridR);
+        toCenter("editmod", gridReader);
     }
 };
-    gridR.jqGrid({
+    gridReader.jqGrid({
     url:"/rest/"+entityName+"/all",
     datatype: "json",
     colNames:['ID','Прізвище', 'Ім\'я','По-батькові'],
@@ -34,16 +34,18 @@ var editWindowR = {
     sortorder: "asc",
     caption:"Читачі",
     height:tableHeight,
+    toppager: true,
     ondblClickRow: function(rowid) {
         jQuery(this).jqGrid('editGridRow', rowid,editWindowR);
     }
 });
-gridR.jqGrid('navGrid',pagerName,
+gridReader.jqGrid('navGrid',pagerName,
     {
         search:false,
         edit:true,
         add:true,
-        del:true
+        del:true,
+        cloneToTop:true
     },
     editWindowR,
     {
@@ -55,7 +57,7 @@ gridR.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("editmod", gridR);
+            toCenter("editmod", gridReader);
         }
     },
     {
@@ -66,12 +68,14 @@ gridR.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("delmod", gridR);
+            toCenter("delmod", gridReader);
         }
     }
 );
 
+editingButtonToTop(gridReader, pagerName);
+
 $(window).resize(function(){
-    gridR.jqGrid('setGridHeight',$(window).innerHeight()-200);
+    gridReader.jqGrid('setGridHeight',$(window).innerHeight()-200);
 });
 

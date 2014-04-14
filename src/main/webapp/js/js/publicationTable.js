@@ -1,7 +1,7 @@
 var entityName = "publication";
 var pagerName = '#'+entityName+"Pager";
 
-var gridP = jQuery("#"+entityName+"Table");
+var gridPublication = jQuery("#"+entityName+"Table");
 
 var editWindowP = {
     url:"/rest/"+entityName+"/updateOne",
@@ -13,11 +13,11 @@ var editWindowP = {
     },
 
     beforeShowForm:function(form){
-        toCenter("editmod", gridP);
+        toCenter("editmod", gridPublication);
     }
 };
 
-    gridP.jqGrid({
+    gridPublication.jqGrid({
     url:"/rest/"+entityName+"/all",
     datatype: "json",
     colNames:['ID','Назва видавництва', 'Місто'],
@@ -34,16 +34,18 @@ var editWindowP = {
     sortorder: "asc",
     caption:"Видавництва",
     height:tableHeight,
+    toppager: true,
     ondblClickRow: function(rowid) {
         jQuery(this).jqGrid('editGridRow', rowid, editWindowP);
     }
 });
-gridP.jqGrid('navGrid',pagerName,
+gridPublication.jqGrid('navGrid',pagerName,
     {
         search:false,
         edit:true,
         add:true,
-        del:true
+        del:true,
+        cloneToTop:true
     },
     editWindowP,
     {
@@ -55,7 +57,7 @@ gridP.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("editmod", gridP);
+            toCenter("editmod", gridPublication);
         }
     },
     {
@@ -66,12 +68,14 @@ gridP.jqGrid('navGrid',pagerName,
         },
 
         beforeShowForm:function(form){
-            toCenter("delmod", gridP);
+            toCenter("delmod", gridPublication);
         }
     }
 );
 
+editingButtonToTop(gridPublication, pagerName);
+
 $(window).resize(function(){
-    gridP.jqGrid('setGridHeight',$(window).innerHeight()-200);
+    gridPublication.jqGrid('setGridHeight',$(window).innerHeight()-200);
 });
 

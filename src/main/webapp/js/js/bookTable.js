@@ -172,6 +172,7 @@ gridBook.jqGrid({
     height: tableHeight,
     autowidth:false,
     shrinkToFit:false,
+    toppager: true,
     ondblClickRow: function(rowid) {
         jQuery(this).jqGrid('editGridRow', rowid,editWindowBook);
     }
@@ -181,7 +182,8 @@ gridBook.jqGrid('navGrid',pagerName,
         search:false,
         edit:true,
         add:true,
-        del:true
+        del:true,
+        cloneToTop:true
     },
     editWindowBook,
     {
@@ -224,6 +226,8 @@ gridBook.jqGrid('navGrid',pagerName,
         }
     }
 );
+
+editingButtonToTop(gridBook, pagerName);
 
 $(window).resize(function(){
     gridBook.jqGrid('setGridHeight', $(window).innerHeight()-200);

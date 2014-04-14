@@ -128,3 +128,11 @@ function autocompleteMultiple(elem, url, fieldId, formatter) {
             return $("<li></li>").append($a).appendTo(ul);
         };
 }
+
+function editingButtonToTop(grid,pagerName){
+    var gridId = grid[0].id;
+    var topPagerDiv = $('#' + gridId + '_toppager')[0];
+    $("#"+ gridId+"_toppager_center", topPagerDiv).remove();
+    $("#"+ gridId+"_toppager_right", topPagerDiv).remove();
+    $("tbody",pagerName+"_left").remove();
+}

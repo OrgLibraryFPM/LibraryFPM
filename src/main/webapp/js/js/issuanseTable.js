@@ -139,6 +139,7 @@ gridIssuanse.jqGrid({
     height: tableHeight,
     autowidth:false,
     shrinkToFit:false,
+    toppager: true,
     ondblClickRow: function(rowid) {
         jQuery(this).jqGrid('editGridRow', rowid,editWindowIssuanse);
     }
@@ -148,7 +149,8 @@ gridIssuanse.jqGrid('navGrid',pagerName,
         search:false,
         edit:true,
         add:true,
-        del:true
+        del:true,
+        cloneToTop:true
     },
     editWindowIssuanse,
     {
@@ -188,6 +190,7 @@ gridIssuanse.jqGrid('navGrid',pagerName,
         }
     }
 );
+editingButtonToTop(gridIssuanse, pagerName);
 
 $(window).resize(function(){
     gridIssuanse.jqGrid('setGridHeight', $(window).innerHeight()-200);
