@@ -30,7 +30,7 @@ public class BookRestService extends BaseRestService<Book> {
 	@GET
 	@Path("/list")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Book> findAll(@QueryParam("term") String likeValue) {
+	public List<Book> findByLike(@QueryParam("term") String likeValue) {
 		return getService().getByLike(likeValue);
 	}
 }

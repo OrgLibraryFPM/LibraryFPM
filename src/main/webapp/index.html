@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/start/jquery-ui.css" type="text/css" />
     <link rel="stylesheet" href="lib/jqGrid/css/ui.jqgrid.css" type="text/css" />
+    <link rel="stylesheet" href="lib/token_input/styles/token-input-libfpm.css" type="text/css" />
 
     <script type="text/javascript" src="lib/jqGrid/js/jquery-1.11.0.min.js" > </script>
     <script type="text/javascript" src="lib/jqGrid/js/i18n/grid.locale-ua.js" ></script>
@@ -15,17 +16,18 @@
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js" ></script>
 
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="lib/token_input/src/jquery.tokeninput.js" ></script>
     <script type="text/javascript" src="js/js/utils.js" ></script>
 
     <script>
         var urlPrefix;
         $(function() {
-//            $('head').append('<script src="js/js/issuanseTable.js"/>');
+            $('head').append('<script src="js/js/issuanseTable.js"/>');
             $('head').append('<script src="js/js/bookTypeTable.js"/>');
             $('head').append('<script src="js/js/publicationTable.js"/>');
             $('head').append('<script src="js/js/authorTable.js"/>');
             $('head').append('<script src="js/js/readerTable.js"/>');
-            $('head').append('<script src="js/js/bookTable.js"/>');
+//            $('head').append('<script src="js/js/bookTable.js"/>');
         });
     </script>
 
@@ -48,7 +50,7 @@
             <ul class="nav nav-pills nav-stacked" id="myTabs">
                 <li class="active"><a href="#index" data-toggle="pill">Головна</a></li>
                 <li><a href="#issuanse" data-toggle="pill">Видача</a></li>
-                <li><a href="#bookType" data-toggle="pill">Типи книг</a></li>
+                <li><a href="#bookType" data-toggle="pill">Типи видання</a></li>
                 <li><a href="#publication" data-toggle="pill">Видавництва</a></li>
                 <li><a href="#author" data-toggle="pill">Автори</a></li>
                 <li><a href="#reader" data-toggle="pill">Читачі</a></li>
@@ -67,7 +69,7 @@
                 <div class="tab-pane" id="issuanse">
                     <table id="issuanseTable"></table>
                     <div id="issuansePager"></div>
-                    <script src="js/js/issuanseTable.js"></script>
+                    <!--<script src="js/js/issuanseTable.js"></script>-->
                 </div>
 
                 <div class="tab-pane" id="bookType">
@@ -93,7 +95,7 @@
                 <div class="tab-pane" id="book">
                     <table id="bookTable"></table>
                     <div id="bookPager"></div>
-                    <!--<script src="js/js/bookTable.js"></script>-->
+                    <script src="js/js/bookTable.js"></script>
                 </div>
             </div>
         </div>

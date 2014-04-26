@@ -1,6 +1,7 @@
 .ui-autocomplete .highlight {
-    font-weight: bold; color: #b92c28;
-    text-decoration: underline;
+    font-weight: bold;
+    /*color: #b92c28;*/
+    /*text-decoration: underline;*/
 }
 
 .ui-autocomplete .ui-menu-item {
@@ -24,3 +25,4 @@
     background: white url("../img/ui-anim_basic_16x16.gif") right center no-repeat;
 }
 
+.ui-jqdialog-content input.FormElement { width: 95%; }

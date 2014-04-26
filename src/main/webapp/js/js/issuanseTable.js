@@ -4,6 +4,8 @@ var pagerName = '#'+entityName+"Pager";
 
 var gridIssuanse = jQuery("#"+entityName+"Table");
 
+var gridIssuanseData;
+
 function splitBooksId(bookIds){
     var ids = split(bookIds);
     if (ids[ids.length-1].length==0){
@@ -23,12 +25,12 @@ var editWindowIssuanse =  {
     ajaxEditOptions: { contentType: "application/json"},
     recreateForm: true,
     resize:false,
-    zIndex:99,
+    width:500,
     serializeEditData : function(postdata, formid) {
         var dateSplit = postdata.dateIssuanse.split(".");
         var dateIssuanse = new Date(dateSplit[2], parseInt(dateSplit[1])-1,dateSplit[0]).getTime();
         var dateReturn = null;
-        if (postdata.dateReturn="true"){
+        if (postdata.dateReturn=="true"){
             dateReturn = new Date().getTime();
         }
         return (JSON.stringify({
@@ -50,6 +52,8 @@ var editWindowIssuanse =  {
         }
         $("#tr_dateReturn").find("td.CaptionTD").text("Повернуто");
         toCenter("editmod", gridIssuanse);
+    },
+    afterComplete: function(response, postdata, formid){
     }
 };
 
@@ -110,20 +114,27 @@ gridIssuanse.jqGrid({
         {name:'id',index:'id', width:20},
         {name:'reader',index:'reader', width:200, editable:true, formatter:readerFormatter,
             editoptions:{
-                        dataInit: function (elem) {
-                                    autocomplete(elem, "/rest/reader/list", "readerId",readerToAutocomplete);
-                                }
+                dataInit: function (elem) {
+                    autocomplete(elem, "/rest/reader/list", "readerId",readerToAutocomplete);
+                }
             }
         },
         {name:'readerId', index:'readerId', hidden:true, editable:true, formatter:readerFormatterId},
         {name:'dateIssuanse',index:'dateIssuanse', width:75, editable:true, sorttype:"date", formatter:dateFormatter},
         {name:'dateReturn',index:'dateReturn', width:75, editable:true, edittype: "checkbox", editoptions: {value: "true:false"}, sorttype:"date" , formatter:dateFormatter},
-        {name:'books',index:'books', width:329, editable:true, formatter:booksFormatter, edittype: "textarea",
+        {name:'books',index:'books', width:329, editable:true, formatter:booksFormatter,
             editoptions:{
-                rows:4,
-                cols:25,
+
                 dataInit: function (elem) {
-                    autocompleteMultiple(elem, "/rest/book/list", "bookIds",bookToAutocomplete);
+                    var books = new Array();
+                    if (gridIssuanseData!=null){
+                        var sel_id = gridIssuanse.jqGrid('getGridParam', 'selrow');
+                        var data = $.grep(gridIssuanseData, function(el){
+                            return el.id == sel_id;
+                        });
+                        books = data[0].books;
+                    }
+                    autocompleteTokenInput(elem, "/rest/book/list", "bookIds", books);
                 }
             }
         },
@@ -140,9 +151,13 @@ gridIssuanse.jqGrid({
     autowidth:false,
     shrinkToFit:false,
     toppager: true,
+    loadComplete: function(data){
+        gridIssuanseData = data.rows;
+    },
     ondblClickRow: function(rowid) {
         jQuery(this).jqGrid('editGridRow', rowid,editWindowIssuanse);
     }
+
 });
 gridIssuanse.jqGrid('navGrid',pagerName,
     {
@@ -170,7 +185,9 @@ gridIssuanse.jqGrid('navGrid',pagerName,
                 books: splitBooksId(postdata.bookIds)
             }));
         },
-
+        beforeInitData : function(formid){
+            gridIssuanseData = null;
+        },
         beforeShowForm:function(form){
             $('#tr_dateIssuanse', form).hide();
             $('#tr_dateReturn', form).hide();

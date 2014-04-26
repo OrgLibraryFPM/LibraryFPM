@@ -3,6 +3,7 @@ var entityName = "book";
 var pagerName = '#'+entityName+"Pager";
 
 var gridBook = jQuery("#"+entityName+"Table");
+var gridBooksData;
 
 function splitAuthorsId(authorIds){
     var ids = split(authorIds);
@@ -24,6 +25,7 @@ var editWindowBook =  {
     recreateForm: true,
     resize:false,
     zIndex:99,
+    width:400,
     serializeEditData : function(postdata, formid) {
 
         return (JSON.stringify({id:postdata.id,
@@ -39,7 +41,7 @@ var editWindowBook =  {
                                 bookType:{id:postdata.bookTypeId},
                                 publication: {id:postdata.publicationId},
                                 authors: splitAuthorsId(postdata.authorIds)
-                               }));
+       }));
     },
 
     beforeShowForm:function(form){
@@ -51,13 +53,17 @@ function toUpperFirstSymwol(str){
     return str.charAt(0).toUpperCase();
 }
 
+var authorFormatView = function (val) {
+    return val.lastName + " " + toUpperFirstSymwol(val.firstName) + ". " + toUpperFirstSymwol(val.middleName)+ ".";
+}
+
 //формат виводу авторів у комірку таблиці
 function authorsFormatter ( cellvalue, options, rowObject )
 {
     var res = "";
     if (cellvalue && cellvalue.length){
         jQuery.each(cellvalue, function(i,val){
-            res+=val.lastName+" "+toUpperFirstSymwol(val.firstName)+". "+toUpperFirstSymwol(val.middleName)+"., ";
+            res+=authorFormatView(val)+"., ";
         });
     }
     return res.substring(0, res.length - 2);
@@ -111,8 +117,7 @@ var authorToAutocomplete = function (item) {
     var author = item.lastName+" "+item.firstName+" "+item.middleName;
     return {
         id: item.id,
-        label: author,
-        value: author
+        name: author
     }
 };
 
@@ -145,12 +150,20 @@ gridBook.jqGrid({
             formatter: publicationFormatter
         },
         {name:'publicationId', index:'publicationId', hidden:true, editable:true, formatter:publicationFormatterId},
-        {name:'authors', index:'authors',width:200,editable:true, edittype: "textarea",
+        {name:'authors', index:'authors', width:200, editable:true,
             editoptions:{
-                rows:4,
-                cols:25,
                 dataInit: function (elem) {
-                    autocompleteMultiple(elem, "/rest/author/list", "authorIds",authorToAutocomplete);
+                    var authors = new Array();
+                    if (gridBooksData!=null){
+                        var sel_id = gridBook.jqGrid('getGridParam', 'selrow');
+                        var data = $.grep(gridBooksData, function(el){
+                            return el.id == sel_id;
+                        });
+                        $.each(data[0].authors, function(i,val){
+                            authors.push(authorToAutocomplete(val));
+                        });
+                    }
+                    autocompleteTokenInput(elem,"/rest/author/list", "authorIds", authors, authorToAutocomplete);
                 }
             },
             formatter:authorsFormatter
@@ -173,6 +186,9 @@ gridBook.jqGrid({
     autowidth:false,
     shrinkToFit:false,
     toppager: true,
+    loadComplete:function(data){
+      gridBooksData = data.rows;
+    },
     ondblClickRow: function(rowid) {
         jQuery(this).jqGrid('editGridRow', rowid,editWindowBook);
     }
@@ -193,6 +209,7 @@ gridBook.jqGrid('navGrid',pagerName,
         zIndex:99,
         resize:false,
         recreateForm: true,
+        width:400,
         serializeEditData : function(postdata, formid) {
             return (JSON.stringify({
                 name:postdata.name,
@@ -209,7 +226,9 @@ gridBook.jqGrid('navGrid',pagerName,
                 authors: splitAuthorsId(postdata.authorIds)
             }));
         },
-
+        beforeInitData : function(formid){
+            gridBooksData = null;
+        },
         beforeShowForm:function(form){
             toCenter("editmod", gridBook);
         }
