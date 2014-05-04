@@ -7,12 +7,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 
 public class ImportData {
 	
-	private static final String TABLE_TYPE = "“ËÔ";
+	private static final String TABLE_TYPE = "–¢–∏–ø";
 	
 	public void importData(byte[] data) throws IOException, ClassNotFoundException, SQLException{
 		File dataBase = File.createTempFile("dataBaseLIB", "accdb");
@@ -22,9 +23,14 @@ public class ImportData {
 			String path = dataBase.getAbsolutePath();
 		    String db ="JDBC:ODBC:Driver=Microsoft Access Driver (*.mdb, *.accdb); DBQ="+path;
 		    Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            con = DriverManager.getConnection(db);
+		    Properties conInfo = new Properties();
+	        conInfo.put("user", "");
+	        conInfo.put("password","");
+	        conInfo.put("charSet", "Cp1251");
+            con = DriverManager.getConnection(db, conInfo);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM " + TABLE_TYPE);
+            String string = "select * from " + TABLE_TYPE;
+			ResultSet rs = st.executeQuery(string);
             while(rs.next()){
             	System.out.println(rs.getObject(1));
                 System.out.println(rs.getObject(2));
