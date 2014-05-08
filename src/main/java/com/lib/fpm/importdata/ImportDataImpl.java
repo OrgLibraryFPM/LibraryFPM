@@ -63,7 +63,8 @@ public class ImportDataImpl implements ImportData {
 			FileUtils.writeByteArrayToFile(dataBase, data);
 			String path = dataBase.getAbsolutePath();
 		    String db ="JDBC:ODBC:Driver=Microsoft Access Driver (*.mdb, *.accdb); DBQ="+path;
-		    Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+//		    Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+//		    Class<T> c = sun.jdbc.odbc.Jdbc
 		    Properties conInfo = new Properties();
 	        conInfo.put("user", "");
 	        conInfo.put("password","");
