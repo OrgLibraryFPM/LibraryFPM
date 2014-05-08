@@ -76,10 +76,17 @@ function bookTypeFormatter ( cellvalue, options, rowObject ){
 
 //формат виводу видавництв у комірку таблиці
 function publicationFormatter ( cellvalue, options, rowObject ){
-    return cellvalue.name;
+    if (cellvalue!=null && cellvalue.hasOwnProperty("name")){
+        return cellvalue.name;
+    }else{
+            return "";
+    }
 }
 
 function publicationFormatterId ( cellvalue, options, rowObject ){
+    if (rowObject.publication==null){
+        return null;
+    }
     return rowObject.publication.id;
 }
 

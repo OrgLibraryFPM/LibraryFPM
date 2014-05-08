@@ -2,6 +2,7 @@ package com.lib.fpm.domains;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -97,7 +98,7 @@ public class Book extends IdDomain {
 		this.publication = publication;
 	}
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name="author_book",
 			joinColumns = @JoinColumn(name="book_id", referencedColumnName="id"),
 	        inverseJoinColumns = @JoinColumn(name="author_id", referencedColumnName="id")

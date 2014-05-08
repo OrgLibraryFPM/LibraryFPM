@@ -17,6 +17,7 @@
 
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js" ></script>
     <script type="text/javascript" src="lib/token_input/src/jquery.tokeninput.js" ></script>
+    <script type="text/javascript" src="lib/fileUpload/upclick-min.js" ></script>
     <script type="text/javascript" src="js/js/utils.js" ></script>
 
     <script>
@@ -50,11 +51,12 @@
             <ul class="nav nav-pills nav-stacked" id="myTabs">
                 <li class="active"><a href="#index" data-toggle="pill">Головна</a></li>
                 <li><a href="#issuanse" data-toggle="pill">Видача</a></li>
+                <li><a href="#book" data-toggle="pill">Видання</a></li>
                 <li><a href="#bookType" data-toggle="pill">Типи видання</a></li>
                 <li><a href="#publication" data-toggle="pill">Видавництва</a></li>
                 <li><a href="#author" data-toggle="pill">Автори</a></li>
                 <li><a href="#reader" data-toggle="pill">Читачі</a></li>
-                <li><a href="#book" data-toggle="pill">Видання</a></li>
+                <li><a href="#import" data-toggle="pill">Імпорт</a></li>
             </ul>
         </div>
 
@@ -97,11 +99,39 @@
                     <div id="bookPager"></div>
                     <script src="js/js/bookTable.js"></script>
                 </div>
+
+                <div class="tab-pane" id="import">
+                    <input type="button" id="uploader" value="Upload">
+
+
+                </div>
             </div>
         </div>
     </div>
 
 </div>
+
+<script>
+    var element = document.getElementById('uploader');
+    upclick(
+            {
+                element:element,
+                action: '/rest/upload/import',
+                onstart:
+                        function(filename)
+                        {
+                            alert('Starting upload: '+filename);
+                        },
+                oncomplete:
+                        function(response_data)
+                        {
+                            alert('Uploaded!');
+                            location.reload();
+                        }
+            }
+    );
+
+</script>
 
 </body>
 </html>

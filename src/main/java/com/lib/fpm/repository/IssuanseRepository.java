@@ -6,6 +6,6 @@ import com.lib.fpm.domains.Issuanse;
 
 
 @Transactional
-public interface IssuanseRepositor extends BaseRepository<Issuanse>{
+public interface IssuanseRepository extends BaseRepository<Issuanse>{
 
 }

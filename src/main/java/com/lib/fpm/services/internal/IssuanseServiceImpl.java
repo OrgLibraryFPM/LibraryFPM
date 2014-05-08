@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 
 import com.lib.fpm.domains.Issuanse;
 import com.lib.fpm.exceptions.DontDeleteRecordException;
-import com.lib.fpm.repository.IssuanseRepositor;
+import com.lib.fpm.repository.IssuanseRepository;
 import com.lib.fpm.services.IssuanseService;
 
 @Service
 public class IssuanseServiceImpl extends BaseServiceImpl<Issuanse> implements IssuanseService {
 	
 	 @Inject
-     public void setRepository(IssuanseRepositor repository) {
+     public void setRepository(IssuanseRepository repository) {
              this.repository = repository;
      }
 	 
