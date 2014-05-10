@@ -2,16 +2,11 @@ package com.lib.fpm.importdata;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.inject.Inject;
 
@@ -21,6 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.healthmarketscience.jackcess.Database;
+import com.healthmarketscience.jackcess.DatabaseBuilder;
+import com.healthmarketscience.jackcess.Row;
+import com.healthmarketscience.jackcess.Table;
 import com.lib.fpm.domains.Author;
 import com.lib.fpm.domains.Book;
 import com.lib.fpm.domains.BookType;
@@ -53,64 +52,64 @@ public class ImportDataImpl implements ImportData {
 	private AuthorRepository authorRepository;
 	
 	private static final String TABLE_TYPE = "Тип";
+	private static final String TABLE_TYPE_NAME = "наименование";
+	private static final String TABLE_TYPE_ID = "Код";
+	
 	private static final String TABLE_BOOK = "Книга2";
+	private static final String TABLE_BOOK_NAME = "Назва";
+	private static final String TABLE_BOOK_TYPE = "Тип";
+	private static final String TABLE_BOOK_YEAR = "Рік";
+	private static final String TABLE_BOOK_TOME = "Том";
+	private static final String TABLE_BOOK_AUTHORS = "Автори";
+	private static final String TABLE_BOOK_PART = "Частина";
+	private static final String TABLE_BOOK_SERIES = "Серія";
+	private static final String TABLE_BOOK_PAGE_COUNT = "Кількість сторінок";
+	private static final String TABLE_BOOK_NUMBER = "номер";
 	
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void importData(byte[] data) throws IOException, ClassNotFoundException, SQLException{
-		File dataBase = File.createTempFile("dataBaseLIB", "accdb");
-		Connection con = null;
+		File dataBaseFile = File.createTempFile("dataBaseLIB", "accdb");
+		Database database = null;
 		try{
-			FileUtils.writeByteArrayToFile(dataBase, data);
-			String path = dataBase.getAbsolutePath();
-		    String db ="JDBC:ODBC:Driver=Microsoft Access Driver (*.mdb, *.accdb); DBQ="+path;
-//		    Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-//		    Class<T> c = sun.jdbc.odbc.Jdbc
-		    Properties conInfo = new Properties();
-	        conInfo.put("user", "");
-	        conInfo.put("password","");
-	        conInfo.put("charSet", "Cp1251");
-            con = DriverManager.getConnection(db, conInfo);
+			FileUtils.writeByteArrayToFile(dataBaseFile, data);
+			database = DatabaseBuilder.open(dataBaseFile);
             
             cleanDB();
-            Map<Long, BookType> bookTypes = importBookType(con);
-            importBook(con, bookTypes);
+            Map<Long, BookType> bookTypes = importBookType(database);
+            importBook(database, bookTypes);
 		} finally{
-			if (con!=null){
-				con.close();
+			if (database!=null){
+				database.close();
 			}
-			dataBase.deleteOnExit();
+			dataBaseFile.deleteOnExit();
 		}
 	}
 	
-	private Map<Long, BookType> importBookType(Connection con) throws SQLException{
-		Statement st = con.createStatement();
-        String query = "select * from " + TABLE_TYPE;
-		ResultSet rs = st.executeQuery(query);
+	private Map<Long, BookType> importBookType(Database database) throws SQLException, IOException{
 		Map<Long, BookType> data = new HashMap<Long, BookType>();
-        while(rs.next()){
-        	BookType bookType = new BookType();
-        	bookType.setType(rs.getString(2));
+		Table table = database.getTable(TABLE_TYPE);
+		for (Row row : table) {
+			BookType bookType = new BookType();
+        	bookType.setType((String)row.get(TABLE_TYPE_NAME));
         	bookType = bookTypeService.create(bookType);
-        	data.put(rs.getLong(1), bookType);
-        }
+        	data.put(Long.valueOf((Integer)row.get(TABLE_TYPE_ID)), bookType);
+		}
         return data;
 	}
 	
-	private void importBook(Connection con, Map<Long, BookType> bookTypes) throws SQLException{
-		Statement st = con.createStatement();
-        String query = "select * from " + TABLE_BOOK;
-		ResultSet rs = st.executeQuery(query);
-        while(rs.next()){
+	private void importBook(Database database, Map<Long, BookType> bookTypes) throws SQLException, IOException{
+		Table table = database.getTable(TABLE_BOOK);
+		for (Row row : table) {
         	Book book = new Book();
-        	book.setName(rs.getString(3));
-        	book.setBookType(bookTypes.get(rs.getLong(4)));
-        	book.setYear(rs.getInt(5));
-        	book.setTome(rs.getInt(6));
-        	book.setAuthors(parseAuthor(rs.getString(7)));
-        	book.setPart(rs.getInt(8));
-        	book.setSeries(rs.getInt(9));
-        	book.setPageCount(rs.getInt(10));
-        	book.setNumber(rs.getInt(11));
+        	book.setName((String) row.get(TABLE_BOOK_NAME));
+        	book.setBookType(bookTypes.get(Long.valueOf(parseInt((String)row.get(TABLE_BOOK_TYPE)))));
+        	book.setYear((Integer) row.get(TABLE_BOOK_YEAR));
+        	book.setTome(parseInt((String)row.get(TABLE_BOOK_TOME)));
+        	book.setAuthors(parseAuthor((String)row.get(TABLE_BOOK_AUTHORS)));
+        	book.setPart(parseInt((String)row.get(TABLE_BOOK_PART)));
+        	book.setSeries(parseInt((String)row.get(TABLE_BOOK_SERIES)));
+        	book.setPageCount((Integer)row.get(TABLE_BOOK_PAGE_COUNT));
+        	book.setNumber(parseInt((String)row.get(TABLE_BOOK_NUMBER)));
         	bookService.create(book);
         }
 	}
@@ -139,6 +138,13 @@ public class ImportDataImpl implements ImportData {
 			}
 		}
 		return result;
+	}
+	
+	private Integer parseInt(String number){
+		if (StringUtils.isBlank(number)){
+			return null;
+		}
+		return Integer.valueOf(number);
 	}
 	private void cleanDB(){
 		issuanseRepository.deleteAll();
