@@ -113,7 +113,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-body">
-                                    <p class="lead">Невірний формат файлу&hellip;</p>
+                                    <p id="errorMessage" class="lead">Невірний формат файлу!!!</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
@@ -145,6 +145,24 @@
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
+
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h4 class="modal-title">Обовязкова інформація!!!</h4>
+                        </div>
+                        <div class="panel-body">
+                            <p class="lead">
+                                Імпорт відбувається з файлу <strong>Microsoft Access</strong> формату <strong>*.accdb </strong> <br>
+                                Підчас імпорту будуть очищені нижче наведені таблиці:
+                                <ul>
+                                    <li>Видача</li>
+                                    <li>Видання</li>
+                                    <li>Автори</li>
+                                    <li>Типи видань</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
                    <span class="btn btn-primary fileinput-button">
                         <i class="glyphicon glyphicon-plus"></i>
                         <span>Виберіть файл...</span>
@@ -169,6 +187,7 @@
         var importFileName = $('#importFileName');
         var closeImportProgress = $('#closeImportProgress');
         var progressImport = $('#progressImport');
+        var errorImport = $('#errorImport');
         closeImportProgress.click(function(){
                     progressImport.modal('hide');
                     location.reload();
@@ -191,15 +210,17 @@
                 progressTitle.addClass("alert-success");
                 progressTitle.children("h4").text("Імпорт завершено");
                 closeImportProgress.attr("disabled", false);
-//                location.reload();
             },
             fail:function (e, data) {
-                console.log(data);
                 progressImport.modal('hide');
+                var errorMessage = $('#errorMessage');
                 if (data.jqXHR.status == 400){
-                    $('#errorImport').modal('show');
-                    $('#progress .progress-bar').css('width',0 + '%');
+                    errorMessage.text("Невірний формат файлу!!!");
+                }else if (data.jqXHR.status == 409){
+                    errorMessage.text("База даних не відповідає структурі!!!");
                 }
+                errorImport.modal('show');
+                $('#progress .progress-bar').css('width',0 + '%');
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);

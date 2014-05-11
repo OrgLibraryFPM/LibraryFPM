@@ -73,6 +73,7 @@ public class ImportDataImpl implements ImportData {
 		try{
 			FileUtils.writeByteArrayToFile(dataBaseFile, data);
 			database = DatabaseBuilder.open(dataBaseFile);
+            validDatabase(database);
             
             cleanDB();
             Map<Long, BookType> bookTypes = importBookType(database);
@@ -82,6 +83,16 @@ public class ImportDataImpl implements ImportData {
 				database.close();
 			}
 			dataBaseFile.deleteOnExit();
+		}
+	}
+	
+	private void validDatabase(Database database) throws IOException{
+		if (database==null){
+			throw new IllegalArgumentException("Database is NULL");
+		}
+		if (!database.getTableNames().contains(TABLE_BOOK) || 
+				!database.getTableNames().contains(TABLE_TYPE)){
+			throw new IllegalArgumentException("Database does not contain relevant tables");
 		}
 	}
 	

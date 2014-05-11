@@ -35,8 +35,13 @@ public class ImportRestService {
 		if (index<0){
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-		importData.importData(IOUtils.toByteArray(fileInputStream));
-		fileInputStream.close();
+		try{
+			importData.importData(IOUtils.toByteArray(fileInputStream));
+		} catch (IllegalArgumentException e){
+			return Response.status(Status.CONFLICT).build();
+		} finally{
+			fileInputStream.close();
+		}
 		return Response.ok(contentDispositionHeader, MediaType.APPLICATION_JSON).build();
 	}
 }

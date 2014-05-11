@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="183" column="73" selection-start="8357" selection-end="8357" vertical-scroll-proportion="0.8541667" vertical-offset="2414" max-vertical-offset="3808">
+            <state line="150" column="81" selection-start="7155" selection-end="7155" vertical-scroll-proportion="-34.653847" vertical-offset="1649" max-vertical-offset="4165">
               <folding />
             </state>
           </provider>
@@ -77,10 +77,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="root-context.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="root-context.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WEB-INF/spring/root-context.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="48" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1037">
+            <state line="23" column="46" selection-start="1200" selection-end="1200" vertical-scroll-proportion="0.29334918" vertical-offset="144" max-vertical-offset="1037">
               <folding />
             </state>
           </provider>
@@ -109,8 +109,8 @@
         <option value="$PROJECT_DIR$/js/js/utils.js" />
         <option value="$PROJECT_DIR$/js/js/bookTable.js" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/WEB-INF/spring/root-context.xml" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/WEB-INF/spring/root-context.xml" />
       </list>
     </option>
   </component>
@@ -455,16 +455,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WEB-INF/spring/root-context.xml">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="48" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1037">
+        <state line="150" column="81" selection-start="7155" selection-end="7155" vertical-scroll-proportion="-34.653847" vertical-offset="1649" max-vertical-offset="4165">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/WEB-INF/spring/root-context.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="183" column="73" selection-start="8357" selection-end="8357" vertical-scroll-proportion="0.8541667" vertical-offset="2414" max-vertical-offset="3808">
+        <state line="23" column="46" selection-start="1200" selection-end="1200" vertical-scroll-proportion="0.29334918" vertical-offset="144" max-vertical-offset="1037">
           <folding />
         </state>
       </provider>
