@@ -178,7 +178,6 @@
                 progressTitle.children("h4").text("Дочекайтесь закінченн імпорту!");
                 $('#progress .progress-bar').css('width',0 + '%');
                 closeImportProgress.attr("disabled", true);
-                $('#progressImport').modal({show:true, backdrop:"static"});
             },
             done: function (e, data) {
                 importFileName.text(data.result.fileName);
@@ -198,6 +197,7 @@
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progressImport').modal({show:true, backdrop:"static"});
                 $('#progress .progress-bar').css(
                         'width',
                         progress + '%'
