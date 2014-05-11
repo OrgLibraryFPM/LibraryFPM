@@ -168,6 +168,12 @@
         var progressTitle = $('#progressImportTitle');
         var importFileName = $('#importFileName');
         var closeImportProgress = $('#closeImportProgress');
+        var progressImport = $('#progressImport');
+        closeImportProgress.click(function(){
+                    progressImport.modal('hide');
+                    location.reload();
+                }
+        );
         $('#fileupload').fileupload({
             url: url,
             dataType: 'json',
@@ -189,7 +195,7 @@
             },
             fail:function (e, data) {
                 console.log(data);
-                $('#progressImport').modal('hide');
+                progressImport.modal('hide');
                 if (data.jqXHR.status == 400){
                     $('#errorImport').modal('show');
                     $('#progress .progress-bar').css('width',0 + '%');
@@ -197,14 +203,11 @@
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
-                $('#progressImport').modal({show:true, backdrop:"static"});
+                progressImport.modal({show:true, backdrop:"static"});
                 $('#progress .progress-bar').css(
                         'width',
                         progress + '%'
                 );
-            },
-            always:function (e, data) {
-//                location.reload();
             }
         }).prop('disabled', !$.support.fileInput)
                 .parent().addClass($.support.fileInput ? undefined : 'disabled');
