@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/start/jquery-ui.css" type="text/css" />
     <link rel="stylesheet" href="lib/jqGrid/css/ui.jqgrid.css" type="text/css" />
+    <link rel="stylesheet" href="lib/fileUpload/jquery.fileupload.css" type="text/css" />
     <link rel="stylesheet" href="lib/token_input/styles/token-input-libfpm.css" type="text/css" />
 
     <script type="text/javascript" src="lib/jqGrid/js/jquery-1.11.0.min.js" > </script>
@@ -17,7 +18,8 @@
 
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js" ></script>
     <script type="text/javascript" src="lib/token_input/src/jquery.tokeninput.js" ></script>
-    <script type="text/javascript" src="lib/fileUpload/upclick-min.js" ></script>
+    <script type="text/javascript" src="lib/fileUpload/jquery.fileupload.js" ></script>
+    <script type="text/javascript" src="lib/fileUpload/jquery.iframe-transport.js" ></script>
     <script type="text/javascript" src="js/js/utils.js" ></script>
 
     <script>
@@ -101,8 +103,54 @@
                 </div>
 
                 <div class="tab-pane" id="import">
-                    <input type="button" id="uploader" value="Upload">
 
+                    <div class="modal fade" id="errorImport">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="alert alert-danger">
+                                        <h4 class="modal-title">Помилка</h4>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="lead">Невірний формат файлу&hellip;</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <div class="modal fade" id="progressImport">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div id="progressImportTitle" class="alert alert-info">
+                                        <h4 class="modal-title">Дочекайтесь закінченн імпорту!</h4>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="progress" class="progress">
+                                        <div class="progress-bar"></div>
+                                    </div>
+                                    <!-- The container for the uploaded files -->
+                                    <div id="files" class="files">
+                                        <p id="importFileName"></p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="closeImportProgress" type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                   <span class="btn btn-primary fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Виберіть файл...</span>
+                        <!-- The file input field used as target for the file upload widget -->
+                        <input id="fileupload" type="file" accept="application/msaccess" name="Filedata" >
+                    </span>
 
                 </div>
             </div>
@@ -112,25 +160,55 @@
 </div>
 
 <script>
-    var element = document.getElementById('uploader');
-    upclick(
-            {
-                element:element,
-                action: '/rest/upload/import',
-                onstart:
-                        function(filename)
-                        {
-                            alert('Starting upload: '+filename);
-                        },
-                oncomplete:
-                        function(response_data)
-                        {
-                            alert('Uploaded!');
-                            location.reload();
-                        }
-            }
-    );
 
+    $(function () {
+        'use strict';
+        // Change this to the location of your server-side upload handler:
+        var url = '/rest/upload/import';
+        var progressTitle = $('#progressImportTitle');
+        var importFileName = $('#importFileName');
+        var closeImportProgress = $('#closeImportProgress');
+        $('#fileupload').fileupload({
+            url: url,
+            dataType: 'json',
+            start:function (e, data) {
+                importFileName.text("");
+                progressTitle.removeClass("alert-success");
+                progressTitle.addClass("alert-info");
+                progressTitle.children("h4").text("Дочекайтесь закінченн імпорту!");
+                $('#progress .progress-bar').css('width',0 + '%');
+                closeImportProgress.attr("disabled", true);
+                $('#progressImport').modal({show:true, backdrop:"static"});
+            },
+            done: function (e, data) {
+                importFileName.text(data.result.fileName);
+                progressTitle.removeClass("alert-info");
+                progressTitle.addClass("alert-success");
+                progressTitle.children("h4").text("Імпорт завершено");
+                closeImportProgress.attr("disabled", false);
+//                location.reload();
+            },
+            fail:function (e, data) {
+                console.log(data);
+                $('#progressImport').modal('hide');
+                if (data.jqXHR.status == 400){
+                    $('#errorImport').modal('show');
+                    $('#progress .progress-bar').css('width',0 + '%');
+                }
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .progress-bar').css(
+                        'width',
+                        progress + '%'
+                );
+            },
+            always:function (e, data) {
+//                location.reload();
+            }
+        }).prop('disabled', !$.support.fileInput)
+                .parent().addClass($.support.fileInput ? undefined : 'disabled');
+    });
 </script>
 
 </body>

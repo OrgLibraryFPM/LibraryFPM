@@ -16,6 +16,7 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Component;
 
 import com.lib.fpm.importdata.ImportData;
+import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
 @Component
@@ -27,11 +28,15 @@ public class ImportRestService {
 	@POST
 	@Path("/import")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response findById(
-			@FormDataParam("Filedata") InputStream fileInputStream) throws ClassNotFoundException, IOException, SQLException {
+	public Response importData(
+			@FormDataParam("Filedata") InputStream fileInputStream,
+			@FormDataParam("Filedata") FormDataContentDisposition contentDispositionHeader) throws ClassNotFoundException, IOException, SQLException {
+		Integer index = contentDispositionHeader.getFileName().indexOf(".accdb");
+		if (index<0){
+			return Response.status(Status.BAD_REQUEST).build();
+		}
 		importData.importData(IOUtils.toByteArray(fileInputStream));
 		fileInputStream.close();
-		System.out.println();
-		return Response.status(Status.OK).build();
+		return Response.ok(contentDispositionHeader, MediaType.APPLICATION_JSON).build();
 	}
 }
