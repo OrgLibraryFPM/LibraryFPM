@@ -50,6 +50,9 @@ var editWindowBook =  {
 };
 
 function toUpperFirstSymwol(str){
+    if (str==null){
+        return "";
+    }
     return str.charAt(0).toUpperCase();
 }
 
